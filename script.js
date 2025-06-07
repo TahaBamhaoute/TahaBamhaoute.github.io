@@ -1,8 +1,12 @@
 // Theme Management
 class ThemeManager {
     constructor() {
-        this.theme = localStorage.getItem('theme') || 'light';
+        this.theme = localStorage.getItem('theme') || this.getSystemTheme();
         this.init();
+    }
+
+    getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
     init() {
@@ -12,6 +16,7 @@ class ThemeManager {
 
     applyTheme() {
         document.documentElement.setAttribute('data-theme', this.theme);
+        document.documentElement.className = this.theme; // Alternative class for compatibility
         localStorage.setItem('theme', this.theme);
     }
 
@@ -220,34 +225,6 @@ class FormHandler {
     }
 }
 
-// Utility Functions
-class Utils {
-    static debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-
-    static throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    }
-}
-
 // Icon Loader
 class IconLoader {
     constructor() {
@@ -263,6 +240,47 @@ class IconLoader {
             setTimeout(() => this.init(), 100);
         }
     }
+}
+
+// Vortex background animation for #home
+function vortexBackground() {
+    const canvas = document.getElementById('vortex-bg');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    function resize() {
+        canvas.width = window.innerWidth;
+        const home = document.querySelector('#home');
+        canvas.height = home ? home.offsetHeight : window.innerHeight;
+    }
+    
+    resize();
+    window.addEventListener('resize', resize);
+
+    function drawVortex(time) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const arms = 5;
+        const particles = 300;
+        
+        for (let i = 0; i < particles; i++) {
+            const angle = (i / arms) + time * 0.0006;
+            const radius = 80 + (i * 2);
+            const px = cx + Math.cos(angle) * radius;
+            const py = cy + Math.sin(angle) * radius;
+            
+            ctx.beginPath();
+            ctx.arc(px, py, 3 + (i % 3), 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(37,99,235,${0.15 + 0.5 * Math.sin(i + time * 0.001)})`;
+            ctx.fill();
+        }
+        
+        requestAnimationFrame(drawVortex);
+    }
+    
+    requestAnimationFrame(drawVortex);
 }
 
 // Main App
@@ -288,49 +306,15 @@ class App {
         this.formHandler = new FormHandler();
         this.iconLoader = new IconLoader();
 
+        // Initialize vortex background
+        vortexBackground();
+        
         // Add smooth scrolling for all anchor links
         this.initSmoothScrolling();
         
         // Add loading class removal
         this.removeLoadingState();
     }
-  // Vortex background animation for #home
-function vortexBackground() {
-  const canvas = document.getElementById('vortex-bg');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  function resize() {
-    canvas.width = window.innerWidth;
-    const home = document.querySelector('#home');
-    canvas.height = home ? home.offsetHeight : window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  function drawVortex(time) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const cx = canvas.width / 2;
-    const cy = canvas.height / 2;
-    const arms = 5;
-    const particles = 300;
-    for (let i = 0; i < particles; i++) {
-      const angle = (i / arms) + time * 0.0006;
-      const radius = 80 + (i * 2);
-      const px = cx + Math.cos(angle) * radius;
-      const py = cy + Math.sin(angle) * radius;
-      ctx.beginPath();
-      ctx.arc(px, py, 3 + (i % 3), 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(37,99,235,${0.15 + 0.5 * Math.sin(i + time * 0.001)})`;
-      ctx.fill();
-    }
-    requestAnimationFrame(drawVortex);
-  }
-  requestAnimationFrame(drawVortex);
-}
-
-window.addEventListener('DOMContentLoaded', vortexBackground);
-
-// (Le reste de ton code script.js ici, si besoin)
 
     initSmoothScrolling() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -367,40 +351,37 @@ window.addEventListener('DOMContentLoaded', vortexBackground);
 
 // Initialize the app
 new App();
-document.addEventListener('DOMContentLoaded', function () {
-    // Init Lucide icons
-    if (window.lucide) lucide.createIcons();
 
-    const btn = document.getElementById('theme-toggle');
+// Alternative initialization for immediate DOM ready
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize Lucide icons
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+
+    // Theme toggle functionality (backup implementation)
+    const themeToggle = document.getElementById('theme-toggle');
     const root = document.documentElement;
 
-    // Détection du thème sauvegardé
-    function setTheme(dark) {
-        if (dark) {
-            root.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            root.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        }
-        // Met à jour les icônes
-        document.querySelector('.sun-icon').style.display = dark ? 'none' : 'inline';
-        document.querySelector('.moon-icon').style.display = dark ? 'inline' : 'none';
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+            const currentTheme = root.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            root.setAttribute('data-theme', newTheme);
+            root.className = newTheme;
+            localStorage.setItem('theme', newTheme);
+        });
     }
 
-    // Clique sur le bouton
-    btn.addEventListener('click', function () {
-        const isDark = root.classList.contains('dark');
-        setTheme(!isDark);
-    });
-
-    // Initialisation au chargement
-    let theme = localStorage.getItem('theme');
-    if (!theme) {
-        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    setTheme(theme === 'dark');
+    // Initialize theme from localStorage
+    const savedTheme = localStorage.getItem('theme') || 
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    root.setAttribute('data-theme', savedTheme);
+    root.className = savedTheme;
 });
+
 // Add some initial styles for loading states
 document.addEventListener('DOMContentLoaded', function() {
     const style = document.createElement('style');
