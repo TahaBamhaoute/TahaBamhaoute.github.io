@@ -367,7 +367,40 @@ window.addEventListener('DOMContentLoaded', vortexBackground);
 
 // Initialize the app
 new App();
+document.addEventListener('DOMContentLoaded', function () {
+    // Init Lucide icons
+    if (window.lucide) lucide.createIcons();
 
+    const btn = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+
+    // Détection du thème sauvegardé
+    function setTheme(dark) {
+        if (dark) {
+            root.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            root.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+        // Met à jour les icônes
+        document.querySelector('.sun-icon').style.display = dark ? 'none' : 'inline';
+        document.querySelector('.moon-icon').style.display = dark ? 'inline' : 'none';
+    }
+
+    // Clique sur le bouton
+    btn.addEventListener('click', function () {
+        const isDark = root.classList.contains('dark');
+        setTheme(!isDark);
+    });
+
+    // Initialisation au chargement
+    let theme = localStorage.getItem('theme');
+    if (!theme) {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    setTheme(theme === 'dark');
+});
 // Add some initial styles for loading states
 document.addEventListener('DOMContentLoaded', function() {
     const style = document.createElement('style');
