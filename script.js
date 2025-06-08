@@ -174,18 +174,54 @@ class FormHandler {
         }
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
         
-        const formData = new FormData(this.form);
-        const data = Object.fromEntries(formData);
+        const submitButton = this.form.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
         
-        // Simulate form submission
-        this.showMessage('Message envoyé avec succès! Je vous répondrai bientôt.', 'success');
-        this.form.reset();
+        // Show loading state
+        submitButton.innerHTML = '<i data-lucide="loader-2"></i> Envoi en cours...';
+        submitButton.disabled = true;
+        
+        try {
+            const formData = new FormData(this.form);
+            
+            const response = await fetch(this.form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                this.showMessage('Message envoyé avec succès! Je vous répondrai bientôt.', 'success');
+                this.form.reset();
+            } else {
+                throw new Error('Erreur lors de l\'envoi');
+            }
+        } catch (error) {
+            this.showMessage('Erreur lors de l\'envoi du message. Veuillez réessayer.', 'error');
+        } finally {
+            // Restore button state
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+            
+            // Re-initialize Lucide icons for the restored button
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
     }
 
     showMessage(message, type = 'info') {
+        // Remove any existing messages
+        const existingMessage = document.querySelector('.form-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
         // Create message element
         const messageEl = document.createElement('div');
         messageEl.className = `form-message form-message--${type}`;
@@ -198,12 +234,14 @@ class FormHandler {
             right: '20px',
             padding: '1rem 1.5rem',
             borderRadius: 'var(--radius)',
-            backgroundColor: type === 'success' ? '#10b981' : '#ef4444',
+            backgroundColor: type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6',
             color: 'white',
             fontWeight: '500',
             zIndex: '9999',
             transform: 'translateX(100%)',
-            transition: 'transform 0.3s ease-in-out'
+            transition: 'transform 0.3s ease-in-out',
+            maxWidth: '300px',
+            wordWrap: 'break-word'
         });
         
         document.body.appendChild(messageEl);
