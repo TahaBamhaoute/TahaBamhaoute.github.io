@@ -9,30 +9,86 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
         :root {
+            /* Light theme colors */
             --primary: #2563eb;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --text-light: #999999;
+            --primary-foreground: #ffffff;
+            --secondary: #f1f5f9;
+            --secondary-foreground: #0f172a;
             --background: #ffffff;
-            --surface: #f8f9fa;
-            --border: #e5e5e5;
-            --accent: #f0f4ff;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --foreground: #0f172a;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --border: #e2e8f0;
+            --card: #ffffff;
+            --card-foreground: #0f172a;
+            --accent: #f1f5f9;
+            --accent-foreground: #0f172a;
+            
+            /* Spacing */
+            --container-padding: 1rem;
+            --section-padding: 5rem 0;
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            
+            /* Border radius */
+            --radius: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Transitions */
+            --transition: all 0.2s ease-in-out;
+            --transition-slow: all 0.3s ease-in-out;
         }
 
+        /* Dark theme */
         [data-theme="dark"] {
-            --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
-            --text-light: #808080;
-            --background: #0a0a0a;
-            --surface: #111111;
-            --border: #333333;
-            --accent: #1a1a2e;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+            --primary: #3b82f6;
+            --primary-foreground: #ffffff;
+            --secondary: #1e293b;
+            --secondary-foreground: #f8fafc;
+            --background: #0f172a;
+            --foreground: #f8fafc;
+            --muted: #1e293b;
+            --muted-foreground: #94a3b8;
+            --border: #334155;
+            --card: #1e293b;
+            --card-foreground: #f8fafc;
+            --accent: #334155;
+            --accent-foreground: #f8fafc;
+        }
+
+        /* Alternative dark class for compatibility */
+        .dark {
+            --primary: #3b82f6;
+            --primary-foreground: #ffffff;
+            --secondary: #1e293b;
+            --secondary-foreground: #f8fafc;
+            --background: #0f172a;
+            --foreground: #f8fafc;
+            --muted: #1e293b;
+            --muted-foreground: #94a3b8;
+            --border: #334155;
+            --card: #1e293b;
+            --card-foreground: #f8fafc;
+            --accent: #334155;
+            --accent-foreground: #f8fafc;
         }
 
         * {
@@ -602,12 +658,12 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .container {
-                padding: 0 1rem;
+                padding: 0 var(--container-padding);
             }
 
             .nav-menu {
                 position: fixed;
-                top: 70px;
+                top: 4rem;
                 left: 0;
                 right: 0;
                 background-color: var(--background);
@@ -632,7 +688,7 @@
             }
 
             .hero-greeting {
-                font-size: 2rem;
+                font-size: var(--font-size-3xl);
             }
 
             .profile-container {
@@ -646,7 +702,7 @@
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: var(--font-size-2xl);
             }
 
             /* Vortex plus petits sur mobile */
@@ -758,6 +814,31 @@
             }
         }
 
+        @media (max-width: 480px) {
+            :root {
+                --container-padding: 0.75rem;
+                --section-padding: 3rem 0;
+            }
+
+            .hero {
+                padding: 5rem 0 3rem;
+            }
+
+            .hero-greeting {
+                font-size: var(--font-size-2xl);
+            }
+
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
         /* Theme toggle icon styles */
         .theme-toggle .sun-icon {
             display: block;
@@ -780,10 +861,16 @@
             scroll-behavior: smooth;
         }
 
-        /* Focus states */
+        /* Focus states for accessibility */
         *:focus {
             outline: 2px solid var(--primary);
             outline-offset: 2px;
+        }
+
+        .theme-toggle:focus,
+        .nav-link:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--primary)/30;
         }
     </style>
 </head>
@@ -899,11 +986,15 @@
     </footer>
 
     <script>
-        // Theme management
+        // Theme Management
         class ThemeManager {
             constructor() {
-                this.theme = localStorage.getItem('theme') || 'light';
+                this.theme = localStorage.getItem('theme') || this.getSystemTheme();
                 this.init();
+            }
+
+            getSystemTheme() {
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             }
 
             init() {
@@ -913,6 +1004,7 @@
 
             applyTheme() {
                 document.documentElement.setAttribute('data-theme', this.theme);
+                document.documentElement.className = this.theme; // Alternative class for compatibility
                 localStorage.setItem('theme', this.theme);
             }
 
@@ -929,9 +1021,10 @@
             }
         }
 
-        // Navigation management
+        // Navigation Management
         class NavigationManager {
             constructor() {
+                this.header = document.querySelector('.header');
                 this.navToggle = document.getElementById('nav-toggle');
                 this.navMenu = document.getElementById('nav-menu');
                 this.navLinks = document.querySelectorAll('.nav-link');
@@ -940,6 +1033,8 @@
 
             init() {
                 this.bindEvents();
+                this.handleScroll();
+                this.setActiveLink();
             }
 
             bindEvents() {
@@ -957,6 +1052,35 @@
                             this.navMenu.classList.remove('active');
                         }
                     });
+                });
+
+                // Handle scroll for header background
+                window.addEventListener('scroll', () => this.handleScroll());
+            }
+
+            handleScroll() {
+                if (this.header) {
+                    if (window.scrollY > 50) {
+                        this.header.classList.add('scrolled');
+                    } else {
+                        this.header.classList.remove('scrolled');
+                    }
+                }
+            }
+
+            setActiveLink() {
+                // For multi-page navigation, we'll set active based on current page
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                
+                this.navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const linkHref = link.getAttribute('href');
+                    
+                    if (linkHref === currentPage || 
+                        (currentPage === '' && linkHref === 'index.html') ||
+                        (currentPage === 'index.html' && linkHref === 'index.html')) {
+                        link.classList.add('active');
+                    }
                 });
             }
         }
