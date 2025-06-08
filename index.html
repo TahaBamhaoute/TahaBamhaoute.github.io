@@ -942,6 +942,17 @@
                 <p class="hero-description">
                     Je suis Taha, ingénieur spécialisé en simulation numérique et mécanique des fluides computationnelle (CFD).
                 </p>
+                
+                <div class="hero-buttons">
+                    <a href="projects.html" class="btn btn-primary">
+                        <i data-lucide="rocket"></i>
+                        Découvrir mes projets
+                    </a>
+                    <a href="cv.html" class="btn btn-secondary">
+                        <i data-lucide="user"></i>
+                        Voir mon CV
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -1092,6 +1103,20 @@
                         footer.style.backgroundColor = '#1e293b';
                         footer.style.borderTopColor = '#334155';
                     }
+                    
+                    // Boutons hero
+                    const btnPrimary = document.querySelector('.btn-primary');
+                    if (btnPrimary) {
+                        btnPrimary.style.background = 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)';
+                        btnPrimary.style.color = '#ffffff';
+                    }
+                    
+                    const btnSecondary = document.querySelector('.btn-secondary');
+                    if (btnSecondary) {
+                        btnSecondary.style.background = '#1e293b';
+                        btnSecondary.style.color = '#f8fafc';
+                        btnSecondary.style.borderColor = '#334155';
+                    }
                 } else {
                     // Mode clair - réinitialiser
                     document.body.style.backgroundColor = '#ffffff';
@@ -1102,6 +1127,20 @@
                     if (activeLink) {
                         activeLink.style.color = '#2563eb';
                         activeLink.style.backgroundColor = '#f1f5f9';
+                    }
+                    
+                    // Boutons en mode clair
+                    const btnPrimary = document.querySelector('.btn-primary');
+                    if (btnPrimary) {
+                        btnPrimary.style.background = 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)';
+                        btnPrimary.style.color = '#ffffff';
+                    }
+                    
+                    const btnSecondary = document.querySelector('.btn-secondary');
+                    if (btnSecondary) {
+                        btnSecondary.style.background = '#ffffff';
+                        btnSecondary.style.color = '#0f172a';
+                        btnSecondary.style.borderColor = '#e2e8f0';
                     }
                 }
                 
@@ -1128,21 +1167,42 @@
                 });
             }
 
-            // Navigation mobile
+            // Navigation mobile - Version corrigée
             const navToggle = document.getElementById('nav-toggle');
             const navMenu = document.getElementById('nav-menu');
             
+            console.log('Nav toggle:', navToggle);
+            console.log('Nav menu:', navMenu);
+            
             if (navToggle && navMenu) {
-                navToggle.addEventListener('click', function() {
+                navToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('Menu toggle clicked');
                     navMenu.classList.toggle('active');
+                    
+                    // Debug: vérifier l'état
+                    console.log('Menu active:', navMenu.classList.contains('active'));
                 });
+                
+                // Ajouter aussi un event listener sur le document pour fermer le menu
+                document.addEventListener('click', function(e) {
+                    if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            } else {
+                console.error('Nav toggle ou nav menu non trouvé');
             }
 
-            // Fermer le menu mobile sur click des liens
+            // Fermer le menu mobile sur click des liens - Version améliorée
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function() {
-                    if (navMenu) {
+                    console.log('Nav link clicked');
+                    if (navMenu && navMenu.classList.contains('active')) {
                         navMenu.classList.remove('active');
+                        console.log('Menu fermé via nav link');
                     }
                 });
             });
@@ -1164,6 +1224,37 @@
                 }
             }
         })();
+
+        // SECOURS : Menu mobile simple au cas où il y aurait des conflits
+        setTimeout(function() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            if (navToggle && navMenu) {
+                // Supprimer tous les anciens event listeners
+                navToggle.replaceWith(navToggle.cloneNode(true));
+                const newNavToggle = document.getElementById('nav-toggle');
+                
+                newNavToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('SECOURS: Menu toggle clicked');
+                    
+                    if (navMenu.style.transform === 'translateY(0px)') {
+                        navMenu.style.transform = 'translateY(-100%)';
+                        navMenu.style.opacity = '0';
+                        navMenu.style.visibility = 'hidden';
+                        navMenu.classList.remove('active');
+                    } else {
+                        navMenu.style.transform = 'translateY(0px)';
+                        navMenu.style.opacity = '1';
+                        navMenu.style.visibility = 'visible';
+                        navMenu.classList.add('active');
+                    }
+                });
+                
+                console.log('SECOURS: Menu mobile configuré');
+            }
+        }, 1000);
     </script>
 </body>
 </html>
