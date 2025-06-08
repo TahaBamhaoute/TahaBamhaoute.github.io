@@ -994,6 +994,19 @@
                 lucide.createIcons();
             }
 
+            // FORCER le lien Accueil à être actif
+            function setActiveLink() {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                const homeLink = document.querySelector('[href="index.html"].nav-link');
+                if (homeLink) {
+                    homeLink.classList.add('active');
+                    console.log('Lien Accueil forcé actif');
+                }
+            }
+
             // Forcer l'application du thème avec les bonnes couleurs
             function forceThemeApplication() {
                 const theme = localStorage.getItem('theme') || 'light';
@@ -1022,10 +1035,21 @@
                         navBrand.style.color = '#f8fafc';
                     }
                     
-                    // Navigation links
+                    // Navigation links - couleur de base
                     document.querySelectorAll('.nav-link').forEach(link => {
-                        link.style.color = '#94a3b8';
+                        if (!link.classList.contains('active') && link.getAttribute('href') !== 'index.html') {
+                            link.style.color = '#94a3b8';
+                            link.style.backgroundColor = 'transparent';
+                        }
                     });
+                    
+                    // Lien actif (Accueil) - FORCER le bleu
+                    const activeLink = document.querySelector('.nav-link.active, [href="index.html"].nav-link');
+                    if (activeLink) {
+                        activeLink.style.color = '#3b82f6';
+                        activeLink.style.backgroundColor = '#334155';
+                        console.log('Lien Accueil forcé en bleu');
+                    }
                     
                     // Theme toggle
                     const themeToggle = document.querySelector('.theme-toggle');
@@ -1072,12 +1096,20 @@
                     // Mode clair - réinitialiser
                     document.body.style.backgroundColor = '#ffffff';
                     document.body.style.color = '#0f172a';
+                    
+                    // Lien actif en mode clair
+                    const activeLink = document.querySelector('.nav-link.active, [href="index.html"].nav-link');
+                    if (activeLink) {
+                        activeLink.style.color = '#2563eb';
+                        activeLink.style.backgroundColor = '#f1f5f9';
+                    }
                 }
                 
                 console.log('Theme forcé:', theme);
             }
 
-            // Appliquer le thème immédiatement
+            // Appliquer le lien actif ET le thème
+            setActiveLink();
             forceThemeApplication();
 
             // Toggle thème personnalisé
