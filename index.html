@@ -8,43 +8,94 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
-    <header class="header" id="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="index.html" class="nav-brand">
-                    <i data-lucide="droplet"></i>
-                    <span>Taha Bamhaoute</span>
-                </a>
-                <div class="nav-menu" id="nav-menu">
-                    <a href="index.html" class="nav-link">
-                        <i data-lucide="home"></i>
-                        <span>Accueil</span>
-                    </a>
-                    <a href="cv.html" class="nav-link active">
-                        <i data-lucide="file-text"></i>
-                        <span>CV</span>
-                    </a>
-                    <a href="projects.html" class="nav-link">
-                        <i data-lucide="microscope"></i>
-                        <span>Projets</span>
-                    </a>
-                    <a href="contact.html" class="nav-link">
-                        <i data-lucide="mail"></i>
-                        <span>Contact</span>
-                    </a>
-                </div>
-                <div class="nav-actions">
-                    <button class="theme-toggle" id="theme-toggle">
-                        <i data-lucide="sun" class="sun-icon"></i>
-                        <i data-lucide="moon" class="moon-icon"></i>
-                    </button>
-                    <button class="nav-toggle" id="nav-toggle">
-                        <i data-lucide="menu"></i>
-                    </button>
-                </div>
-            </nav>
-        </div>
-    </header>
+        :root {
+            /* Light theme colors */
+            --primary: #2563eb;
+            --primary-foreground: #ffffff;
+            --secondary: #f1f5f9;
+            --secondary-foreground: #0f172a;
+            --background: #ffffff;
+            --foreground: #0f172a;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --border: #e2e8f0;
+            --card: #ffffff;
+            --card-foreground: #0f172a;
+            --accent: #f1f5f9;
+            --accent-foreground: #0f172a;
+            
+            /* Spacing */
+            --container-padding: 1rem;
+            --section-padding: 5rem 0;
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            
+            /* Border radius */
+            --radius: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Transitions */
+            --transition: all 0.2s ease-in-out;
+            --transition-slow: all 0.3s ease-in-out;
+        }
+
+        /* Dark theme */
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-foreground: #ffffff;
+            --secondary: #1e293b;
+            --secondary-foreground: #f8fafc;
+            --background: #0f172a;
+            --foreground: #f8fafc;
+            --muted: #1e293b;
+            --muted-foreground: #94a3b8;
+            --border: #334155;
+            --card: #1e293b;
+            --card-foreground: #f8fafc;
+            --accent: #334155;
+            --accent-foreground: #f8fafc;
+        }
+
+        /* Alternative dark class for compatibility */
+        .dark {
+            --primary: #3b82f6;
+            --primary-foreground: #ffffff;
+            --secondary: #1e293b;
+            --secondary-foreground: #f8fafc;
+            --background: #0f172a;
+            --foreground: #f8fafc;
+            --muted: #1e293b;
+            --muted-foreground: #94a3b8;
+            --border: #334155;
+            --card: #1e293b;
+            --card-foreground: #f8fafc;
+            --accent: #334155;
+            --accent-foreground: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -943,13 +994,87 @@
                 lucide.createIcons();
             }
 
-            // Forcer l'application du thème
+            // Forcer l'application du thème avec les bonnes couleurs
             function forceThemeApplication() {
                 const theme = localStorage.getItem('theme') || 'light';
+                
+                // Appliquer le thème sur tous les éléments
                 document.documentElement.setAttribute('data-theme', theme);
                 document.documentElement.className = theme;
                 document.body.setAttribute('data-theme', theme);
                 document.body.className = theme;
+                
+                // Forcer les couleurs directement si mode sombre
+                if (theme === 'dark') {
+                    document.body.style.backgroundColor = '#0f172a';
+                    document.body.style.color = '#f8fafc';
+                    
+                    // Header
+                    const header = document.querySelector('.header');
+                    if (header) {
+                        header.style.backgroundColor = '#0f172a';
+                        header.style.borderBottomColor = '#334155';
+                    }
+                    
+                    // Navigation brand
+                    const navBrand = document.querySelector('.nav-brand');
+                    if (navBrand) {
+                        navBrand.style.color = '#f8fafc';
+                    }
+                    
+                    // Navigation links
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.style.color = '#94a3b8';
+                    });
+                    
+                    // Theme toggle
+                    const themeToggle = document.querySelector('.theme-toggle');
+                    if (themeToggle) {
+                        themeToggle.style.backgroundColor = '#0f172a';
+                        themeToggle.style.color = '#f8fafc';
+                        themeToggle.style.borderColor = '#334155';
+                    }
+                    
+                    // Textes principaux
+                    const heroGreeting = document.querySelector('.hero-greeting');
+                    if (heroGreeting) {
+                        heroGreeting.style.color = '#f8fafc';
+                    }
+                    
+                    const heroDescription = document.querySelector('.hero-description');
+                    if (heroDescription) {
+                        heroDescription.style.color = '#94a3b8';
+                    }
+                    
+                    const sectionTitle = document.querySelector('.section-title');
+                    if (sectionTitle) {
+                        sectionTitle.style.color = '#f8fafc';
+                    }
+                    
+                    // Section about
+                    const about = document.querySelector('.about');
+                    if (about) {
+                        about.style.backgroundColor = '#1e293b';
+                    }
+                    
+                    const aboutText = document.querySelector('.about-text');
+                    if (aboutText) {
+                        aboutText.style.color = '#94a3b8';
+                    }
+                    
+                    // Footer
+                    const footer = document.querySelector('.footer');
+                    if (footer) {
+                        footer.style.backgroundColor = '#1e293b';
+                        footer.style.borderTopColor = '#334155';
+                    }
+                } else {
+                    // Mode clair - réinitialiser
+                    document.body.style.backgroundColor = '#ffffff';
+                    document.body.style.color = '#0f172a';
+                }
+                
+                console.log('Theme forcé:', theme);
             }
 
             // Appliquer le thème immédiatement
@@ -964,13 +1089,10 @@
                     
                     localStorage.setItem('theme', newTheme);
                     
-                    // Appliquer sur tous les éléments
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    document.documentElement.className = newTheme;
-                    document.body.setAttribute('data-theme', newTheme);
-                    document.body.className = newTheme;
+                    // Appliquer le nouveau thème
+                    forceThemeApplication();
                     
-                    console.log('Theme changed to:', newTheme);
+                    console.log('Theme changé vers:', newTheme);
                 });
             }
 
@@ -994,14 +1116,20 @@
             });
         });
 
-        // Appliquer le thème dès le chargement
+        // Appliquer le thème dès le chargement (avant DOMContentLoaded)
         (function() {
             const theme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
             document.documentElement.className = theme;
+            
             if (document.body) {
                 document.body.setAttribute('data-theme', theme);
                 document.body.className = theme;
+                
+                if (theme === 'dark') {
+                    document.body.style.backgroundColor = '#0f172a';
+                    document.body.style.color = '#f8fafc';
+                }
             }
         })();
     </script>
