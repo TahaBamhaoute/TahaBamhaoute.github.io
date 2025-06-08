@@ -5,185 +5,461 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taha Bamhaoute | CFD & Simulation Numérique</title>
     <meta name="description" content="Portfolio de Taha Bamhaoute, spécialisé en mécanique des fluides computationnelle et simulation numérique">
-    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
-        /* Ajout/ajustement pour l'image de la home */
-        .hero-image {
+        :root {
+            --primary: #2563eb;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --text-light: #999999;
+            --background: #ffffff;
+            --surface: #f8f9fa;
+            --border: #e5e5e5;
+            --accent: #f0f4ff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --text-light: #808080;
+            --background: #0a0a0a;
+            --surface: #111111;
+            --border: #333333;
+            --accent: #1a1a2e;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .header {
+            background: rgba(10, 10, 10, 0.8);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-brand:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--background);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            /* facultatif : largeur max pour le conteneur */
-            max-width: 350px;
-            margin: 0 auto;
         }
-        .hero-image .profile-photo {
-            width: 260px;
-            max-width: 90vw;
-            height: auto;
-            border-radius: 18px;
-            box-shadow: 0 4px 32px rgba(0,0,0,0.09), 0 1.5px 8px rgba(0,0,0,0.06);
+
+        .theme-toggle:hover {
+            background: var(--surface);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
             object-fit: cover;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin: 0 auto 2rem;
+            display: block;
         }
-        @media (max-width: 600px) {
-            .hero-image .profile-photo {
-                width: 150px;
+
+        .profile-photo:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero-greeting {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: var(--surface);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .about-highlight {
+            background: var(--background);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .about-highlight h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .about-highlight p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--background);
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-greeting {
+                font-size: 2rem;
+            }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Theme toggle icon styles */
+        .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus states */
+        *:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header" id="header">
+    <header class="header">
         <div class="container">
             <nav class="nav">
-                <a href="index.html" class="nav-brand">
-                    <i data-lucide="droplet"></i>
-                    <span>Taha Bamhaoute</span>
-                </a>
-                <div class="nav-menu" id="nav-menu">
-                    <a href="index.html" class="nav-link active">
-                        <i data-lucide="home"></i>
-                        <span>Accueil</span>
-                    </a>
-                    <a href="cv.html" class="nav-link">
-                        <i data-lucide="file-text"></i>
-                        <span>CV</span>
-                    </a>
-                    <a href="projects.html" class="nav-link">
-                        <i data-lucide="microscope"></i>
-                        <span>Projets</span>
-                    </a>
-                    <a href="contact.html" class="nav-link">
-                        <i data-lucide="mail"></i>
-                        <span>Contact</span>
-                    </a>
-                </div>
-                <div class="nav-actions">
-                    <button class="theme-toggle" id="theme-toggle">
-                        <i data-lucide="sun" class="sun-icon"></i>
-                        <i data-lucide="moon" class="moon-icon"></i>
-                    </button>
-                    <button class="nav-toggle" id="nav-toggle">
-                        <i data-lucide="menu"></i>
-                    </button>
-                </div>
+                <a href="index.html" class="nav-brand">Taha Bamhaoute</a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">Accueil</a></li>
+                    <li><a href="cv.html" class="nav-link">CV</a></li>
+                    <li><a href="projects.html" class="nav-link">Projets</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i data-lucide="sun" class="sun-icon"></i>
+                    <i data-lucide="moon" class="moon-icon"></i>
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-bg"></div>
-            <canvas id="vortex-bg"></canvas>
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 class="hero-title">
-                            <span class="gradient-text">Simulation Numérique</span>
-                            <br>& Mécanique des Fluides
-                        </h1>
-                        <p class="hero-subtitle">
-                            Explorer l'invisible, modéliser la complexité, optimiser la réalité.
-                        </p>
-                        <div class="hero-buttons">
-                            <a href="projects.html" class="btn btn-primary">
-                                Découvrir mes projets
-                                <i data-lucide="arrow-right"></i>
-                            </a>
-                            <a href="cv.html" class="btn btn-secondary">
-                                <i data-lucide="graduation-cap"></i>
-                                Voir mon CV
-                            </a>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <img src="IMG_1234.jpeg" alt="Photo de Taha Bamhaoute" class="profile-photo" />
-                    </div>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="IMG_1234.jpeg" alt="Taha Bamhaoute" class="profile-photo">
+                <h1 class="hero-greeting">Hi 👋</h1>
+                <p class="hero-description">
+                    Je suis Taha, ingénieur spécialisé en simulation numérique et mécanique des fluides computationnelle (CFD).
+                </p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <div class="section-header">
-                    <h2>À Propos</h2>
-                    <p>Étudiant en dernière année à ENSEIRB-MATMECA & M2 MEFA, spécialisé en mécanique des fluides numériques (CFD) et simulation.</p>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>Parcours & Expertise</h3>
-                        <p>Passionné par le développement de modèles numériques avancés pour résoudre des problèmes d'ingénierie complexes et contribuer à des solutions durables.</p>
-                        <div class="skills">
-                            <h4>Compétences Techniques</h4>
-                            <div class="skills-grid">
-                                <span class="skill-tag">OpenFOAM</span>
-                                <span class="skill-tag">ANSYS Fluent</span>
-                                <span class="skill-tag">C++</span>
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">MPI/OpenMP</span>
-                                <span class="skill-tag">CFD</span>
-                                <span class="skill-tag">Modélisation</span>
-                                <span class="skill-tag">Linux</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-card">
-                        <div class="card">
-                            <h4>Formation</h4>
-                            <div class="timeline-item">
-                                <h5>Master 2 MEFA</h5>
-                                <p>Université de Bordeaux | 2022-2024</p>
-                            </div>
-                            <div class="timeline-item">
-                                <h5>Formation d'ingénieur</h5>
-                                <p>ENSEIRB-MATMECA | 2021-2024</p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">À propos</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    Passionné par la modélisation numérique et les phénomènes physiques complexes, je développe des solutions innovantes en CFD et simulation pour des applications industrielles et de recherche.
+                </p>
+                
+                <div class="about-highlight">
+                    <h3>Mon parcours</h3>
+                    <p>
+                        Étudiant en dernière année à ENSEIRB-MATMECA et Master 2 MEFA à l'Université de Bordeaux, je me spécialise dans le développement de modèles numériques avancés pour résoudre des problèmes d'ingénierie et contribuer à des solutions durables.
+                    </p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Taha Bamhaoute</h3>
-                    <p>Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.</p>
-                    <div class="social-links">
-                        <a href="https://github.com/TahaBamhaoute" target="_blank">
-                            <i data-lucide="github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/taha-bamhaoute-b06a82253?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BRsrqxVqtTBa4FyuQAJzq9Q%3D%3D" target="_blank">
-                            <i data-lucide="linkedin"></i>
-                        </a>
-                        <a href="mailto:bamask3@gmail.com">
-                            <i data-lucide="mail"></i>
-                        </a>
-                    </div>
+                <div class="social-links">
+                    <a href="https://github.com/TahaBamhaoute" target="_blank" class="social-link">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/taha-bamhaoute-b06a82253" target="_blank" class="social-link">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="mailto:bamask3@gmail.com" class="social-link">
+                        <i data-lucide="mail"></i>
+                    </a>
                 </div>
-                <div class="footer-section">
-                    <h4>Liens Rapides</h4>
-                    <nav class="footer-nav">
-                        <a href="index.html">Accueil</a>
-                        <a href="cv.html">CV</a>
-                        <a href="projects.html">Projets</a>
-                        <a href="contact.html">Contact</a>
-                    </nav>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Taha Bamhaoute. Tous droits réservés.</p>
+                <p class="footer-text">© 2025 Taha Bamhaoute. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+        // Theme management
+        class ThemeManager {
+            constructor() {
+                this.theme = localStorage.getItem('theme') || 'light';
+                this.init();
+            }
+
+            init() {
+                this.applyTheme();
+                this.bindEvents();
+            }
+
+            applyTheme() {
+                document.documentElement.setAttribute('data-theme', this.theme);
+                localStorage.setItem('theme', this.theme);
+            }
+
+            toggle() {
+                this.theme = this.theme === 'light' ? 'dark' : 'light';
+                this.applyTheme();
+            }
+
+            bindEvents() {
+                const themeToggle = document.getElementById('theme-toggle');
+                if (themeToggle) {
+                    themeToggle.addEventListener('click', () => this.toggle());
+                }
+            }
+        }
+
+        // Initialize theme manager
+        new ThemeManager();
+
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    </script>
 </body>
 </html>
