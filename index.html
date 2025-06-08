@@ -38,28 +38,24 @@
     <header class="header" id="header">
         <div class="container">
             <nav class="nav">
-                <a href="#home" class="nav-brand">
+                <a href="index.html" class="nav-brand">
                     <i data-lucide="droplet"></i>
                     <span>Taha Bamhaoute</span>
                 </a>
                 <div class="nav-menu" id="nav-menu">
-                    <a href="#home" class="nav-link active">
+                    <a href="index.html" class="nav-link active">
                         <i data-lucide="home"></i>
                         <span>Accueil</span>
                     </a>
-                    <a href="#about" class="nav-link">
-                        <i data-lucide="user"></i>
-                        <span>À propos</span>
-                    </a>
-                    <a href="#projects" class="nav-link">
-                        <i data-lucide="microscope"></i>
-                        <span>Projets</span>
-                    </a>
-                    <a href="#cv" class="nav-link">
+                    <a href="cv.html" class="nav-link">
                         <i data-lucide="file-text"></i>
                         <span>CV</span>
                     </a>
-                    <a href="#contact" class="nav-link">
+                    <a href="projects.html" class="nav-link">
+                        <i data-lucide="microscope"></i>
+                        <span>Projets</span>
+                    </a>
+                    <a href="contact.html" class="nav-link">
                         <i data-lucide="mail"></i>
                         <span>Contact</span>
                     </a>
@@ -76,6 +72,7 @@
             </nav>
         </div>
     </header>
+
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
@@ -93,11 +90,11 @@
                             Explorer l'invisible, modéliser la complexité, optimiser la réalité.
                         </p>
                         <div class="hero-buttons">
-                            <a href="#projects" class="btn btn-primary">
+                            <a href="projects.html" class="btn btn-primary">
                                 Découvrir mes projets
                                 <i data-lucide="arrow-right"></i>
                             </a>
-                            <a href="#cv" class="btn btn-secondary">
+                            <a href="cv.html" class="btn btn-secondary">
                                 <i data-lucide="graduation-cap"></i>
                                 Voir mon CV
                             </a>
@@ -109,6 +106,7 @@
                 </div>
             </div>
         </section>
+
         <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
@@ -150,163 +148,8 @@
                 </div>
             </div>
         </section>
-        <!-- Projects Section -->
-        <section id="projects" class="projects">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Projets & Simulations</h2>
-                    <p>Découvrez mes travaux en simulation numérique et mécanique des fluides.</p>
-                </div>
-                <div class="projects-grid">
-                    <!-- ... Les cartes projets inchangées ... -->
-                </div>
-            </div>
-        </section>
-        <!-- CV Section -->
-        <section id="cv" class="cv">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Curriculum Vitæ</h2>
-                    <p>Mon parcours académique et professionnel</p>
-                    <a href="cv_Taha.pdf" target="_blank" class="btn btn-primary">
-                        <i data-lucide="download"></i>
-                        Télécharger CV
-                    </a>
-                </div>
-                <div class="cv-content">
-                    <div class="cv-sidebar">
-                        <div class="card">
-                            <div class="profile">
-                                <h3>Taha Bamhaoute</h3>
-                                <p>Ingénieur en simulation numérique & CFD</p>
-                            </div>
-                            <div class="cv-section">
-                                <h4><i data-lucide="code"></i> Compétences</h4>
-                                <div class="skills-list">
-                                    <span>OpenFOAM</span>
-                                    <span>ANSYS Fluent</span>
-                                    <span>C++</span>
-                                    <span>Python</span>
-                                    <span>MPI/OpenMP</span>
-                                    <span>Linux</span>
-                                    <span>Git</span>
-                                </div>
-                            </div>
-                            <div class="cv-section">
-                                <h4><i data-lucide="languages"></i> Langues</h4>
-                                <div class="languages">
-                                    <div class="language">
-                                        <span>Français</span>
-                                        <span>Natif</span>
-                                    </div>
-                                    <div class="language">
-                                        <span>Anglais</span>
-                                        <span>Courant (C1)</span>
-                                    </div>
-                                    <div class="language">
-                                        <span>Espagnol</span>
-                                        <span>Intermédiaire (B1)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cv-main">
-                        <div class="card">
-                            <h3><i data-lucide="graduation-cap"></i> Formation</h3>
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <h4>Master 2 en Mécanique, Énergétique et Fluides Avancés (MEFA)</h4>
-                                    <p>Université de Bordeaux</p>
-                                    <span class="date">2022 - 2024</span>
-                                </div>
-                                <div class="timeline-item">
-                                    <h4>Formation d'ingénieur</h4>
-                                    <p>ENSEIRB-MATMECA, Bordeaux INP</p>
-                                    <span class="date">2021 - 2024</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <h3><i data-lucide="briefcase"></i> Expérience</h3>
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <h4>Stage de fin d'études – IFP Énergies Nouvelles, Lyon</h4>
-                                    <span class="date">Avril 2025 – Septembre 2025</span>
-                                    <p class="description">
-                                        Développement d'un solveur OpenFOAM pour la simulation du mélange miscible entre un fluide newtonien et non newtonien pour des applications au recyclage de plastique.<br>
-                                        • Intégration des transferts thermiques<br>
-                                        • Validation du modèle à l'aide de données expérimentales dans la littérature
-                                    </p>
-                                </div>
-                                <div class="timeline-item">
-                                    <h4>Stage de recherche – LAMFA / Université de Picardie Jules Verne, Amiens</h4>
-                                    <span class="date">Juillet 2024 – Septembre 2024</span>
-                                    <p class="description">
-                                        Estimation des erreurs et optimisation de méthodes numériques pour la théorie de la fonctionnelle de densité (DFT).<br>
-                                        • Application au calcul de structures électroniques en physique de la matière condensée<br>
-                                        • Utilisation du langage Julia et de la bibliothèque DFTK
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Contact</h2>
-                    <p>N'hésitez pas à me contacter pour discuter de collaborations ou d'opportunités.</p>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i data-lucide="mail"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>bamask3@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i data-lucide="linkedin"></i>
-                            <div>
-                                <h4>LinkedIn</h4>
-                                <a href="https://linkedin.com/in/taha-bamhaoute" target="_blank">taha-bamhaoute</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i data-lucide="github"></i>
-                            <div>
-                                <h4>GitHub</h4>
-                                <a href="https://github.com/TahaBamhaoute" target="_blank">TahaBamhaoute</a>
-                            </div>
-                        </div>
-                    </div>
-                    <form class="contact-form" action="https://formspree.io/f/mzzgeboy" method="POST">
-                        <div class="form-group">
-                            <label for="name">Nom</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i data-lucide="send"></i>
-                            Envoyer
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
     </main>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -329,11 +172,10 @@
                 <div class="footer-section">
                     <h4>Liens Rapides</h4>
                     <nav class="footer-nav">
-                        <a href="#home">Accueil</a>
-                        <a href="#about">À propos</a>
-                        <a href="#projects">Projets</a>
-                        <a href="#cv">CV</a>
-                        <a href="#contact">Contact</a>
+                        <a href="index.html">Accueil</a>
+                        <a href="cv.html">CV</a>
+                        <a href="projects.html">Projets</a>
+                        <a href="contact.html">Contact</a>
                     </nav>
                 </div>
             </div>

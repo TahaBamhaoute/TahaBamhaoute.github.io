@@ -68,14 +68,6 @@ class NavigationManager {
 
         // Handle scroll for header background
         window.addEventListener('scroll', () => this.handleScroll());
-
-        // Handle navigation link clicks
-        this.navLinks.forEach(link => {
-            link.addEventListener('click', (e) => this.handleNavClick(e));
-        });
-
-        // Update active link on scroll
-        window.addEventListener('scroll', () => this.setActiveLink());
     }
 
     handleScroll() {
@@ -88,40 +80,18 @@ class NavigationManager {
         }
     }
 
-    handleNavClick(e) {
-        e.preventDefault();
-        const href = e.currentTarget.getAttribute('href');
-        
-        if (href.startsWith('#')) {
-            const target = document.querySelector(href);
-            if (target) {
-                const headerHeight = this.header ? this.header.offsetHeight : 0;
-                const targetPosition = target.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    }
-
     setActiveLink() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPosition = window.scrollY + 100;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                this.navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
+        // For multi-page navigation, we'll set active based on current page
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        
+        this.navLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkHref = link.getAttribute('href');
+            
+            if (linkHref === currentPage || 
+                (currentPage === '' && linkHref === 'index.html') ||
+                (currentPage === 'index.html' && linkHref === 'index.html')) {
+                link.classList.add('active');
             }
         });
     }
@@ -280,7 +250,7 @@ class IconLoader {
     }
 }
 
-// Vortex background animation for #home
+// Vortex background animation for #home (only on index page)
 function vortexBackground() {
     const canvas = document.getElementById('vortex-bg');
     if (!canvas) return;
@@ -344,32 +314,13 @@ class App {
         this.formHandler = new FormHandler();
         this.iconLoader = new IconLoader();
 
-        // Initialize vortex background
-        vortexBackground();
-        
-        // Add smooth scrolling for all anchor links
-        this.initSmoothScrolling();
+        // Initialize vortex background only on home page
+        if (document.getElementById('vortex-bg')) {
+            vortexBackground();
+        }
         
         // Add loading class removal
         this.removeLoadingState();
-    }
-
-    initSmoothScrolling() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerHeight = document.getElementById('header')?.offsetHeight || 0;
-                    const targetPosition = target.offsetTop - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
     }
 
     removeLoadingState() {

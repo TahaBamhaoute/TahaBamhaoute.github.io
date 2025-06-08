@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Taha Bamhaoute | CFD & Simulation Numérique</title>
+    <meta name="description" content="Contactez Taha Bamhaoute, spécialisé en mécanique des fluides computationnelle et simulation numérique">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="nav-brand">
+                    <i data-lucide="droplet"></i>
+                    <span>Taha Bamhaoute</span>
+                </a>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">
+                        <i data-lucide="home"></i>
+                        <span>Accueil</span>
+                    </a>
+                    <a href="cv.html" class="nav-link">
+                        <i data-lucide="file-text"></i>
+                        <span>CV</span>
+                    </a>
+                    <a href="projects.html" class="nav-link">
+                        <i data-lucide="microscope"></i>
+                        <span>Projets</span>
+                    </a>
+                    <a href="contact.html" class="nav-link active">
+                        <i data-lucide="mail"></i>
+                        <span>Contact</span>
+                    </a>
+                </div>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i data-lucide="sun" class="sun-icon"></i>
+                        <i data-lucide="moon" class="moon-icon"></i>
+                    </button>
+                    <button class="nav-toggle" id="nav-toggle">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Contact Section -->
+        <section class="contact page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Contact</h1>
+                    <p>N'hésitez pas à me contacter pour discuter de collaborations ou d'opportunités.</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i data-lucide="mail"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>bamask3@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="linkedin"></i>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <a href="https://linkedin.com/in/taha-bamhaoute" target="_blank">taha-bamhaoute</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="github"></i>
+                            <div>
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/TahaBamhaoute" target="_blank">TahaBamhaoute</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="map-pin"></i>
+                            <div>
+                                <h4>Localisation</h4>
+                                <p>Bordeaux, France</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" action="https://formspree.io/f/mzzgeboy" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i data-lucide="send"></i>
+                            Envoyer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Taha Bamhaoute</h3>
+                    <p>Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/TahaBamhaoute" target="_blank">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/taha-bamhaoute" target="_blank">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="mailto:bamask3@gmail.com">
+                            <i data-lucide="mail"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens Rapides</h4>
+                    <nav class="footer-nav">
+                        <a href="index.html">Accueil</a>
+                        <a href="cv.html">CV</a>
+                        <a href="projects.html">Projets</a>
+                        <a href="contact.html">Contact</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Taha Bamhaoute. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

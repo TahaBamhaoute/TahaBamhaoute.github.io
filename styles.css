@@ -248,6 +248,12 @@ body {
     height: 1.25rem;
 }
 
+/* Page Section */
+.page-section {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+}
+
 /* Hero Section */
 .hero {
     position: relative;
@@ -392,6 +398,7 @@ section {
     margin-bottom: 4rem;
 }
 
+.section-header h1,
 .section-header h2 {
     font-size: var(--font-size-3xl);
     font-weight: 700;
@@ -988,6 +995,7 @@ section {
         margin-bottom: 2rem;
     }
 
+    .section-header h1,
     .section-header h2 {
         font-size: var(--font-size-2xl);
     }
