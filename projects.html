@@ -55,100 +55,58 @@
         <section class="projects page-section">
             <div class="container">
                 <div class="section-header">
-                    <h1>Projets & Simulations</h1>
-                    <p>Découvrez mes travaux en simulation numérique et mécanique des fluides.</p>
+                    <h1>Projets & Recherches</h1>
+                    <p>Découvrez mes travaux en simulation numérique, CFD et physique de la matière condensée.</p>
                 </div>
                 <div class="projects-grid">
+                    <!-- Projet 1: Équation de Boltzmann -->
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg" alt="Simulation CFD">
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+                                BGK
+                            </div>
                         </div>
                         <div class="project-content">
-                            <h3>Simulation CFD - Écoulement Turbulent</h3>
-                            <p>Modélisation numérique d'écoulements turbulents complexes avec OpenFOAM. Étude des phénomènes de transfert de masse et de chaleur dans des géométries industrielles.</p>
+                            <h3>Résolution de l'équation de Boltzmann 1D</h3>
+                            <p>Implémentation en Fortran de méthodes numériques pour résoudre l'équation cinétique de Boltzmann avec modèle BGK. Étude des régimes de transport avec et sans collision, parallélisation OpenMP et validation numérique.</p>
                             <div class="project-tags">
-                                <span class="tag">OpenFOAM</span>
-                                <span class="tag">CFD</span>
-                                <span class="tag">Turbulence</span>
-                                <span class="tag">C++</span>
+                                <span class="tag">Fortran</span>
+                                <span class="tag">Boltzmann</span>
+                                <span class="tag">BGK</span>
+                                <span class="tag">OpenMP</span>
+                                <span class="tag">Différences finies</span>
+                                <span class="tag">Transport</span>
                             </div>
                             <div class="project-actions">
-                                <a href="#" class="btn btn-outline">
-                                    <i data-lucide="external-link"></i>
-                                    Voir détails
-                                </a>
-                                <a href="#" class="btn btn-outline">
+                                <a href="https://github.com/TahaBamhaoute/Boltzeman-BGK" target="_blank" class="btn btn-outline">
                                     <i data-lucide="github"></i>
-                                    Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg" alt="Recyclage plastique">
-                        </div>
-                        <div class="project-content">
-                            <h3>Optimisation du Recyclage Plastique</h3>
-                            <p>Développement de modèles numériques pour optimiser les processus de recyclage des plastiques. Focus sur les mélanges miscibles et les transferts thermiques.</p>
-                            <div class="project-tags">
-                                <span class="tag">Recyclage</span>
-                                <span class="tag">Thermique</span>
-                                <span class="tag">Python</span>
-                                <span class="tag">Modélisation</span>
-                            </div>
-                            <div class="project-actions">
-                                <a href="#" class="btn btn-outline">
-                                    <i data-lucide="external-link"></i>
-                                    Voir détails
+                                    GitHub
                                 </a>
                                 <a href="#" class="btn btn-outline">
                                     <i data-lucide="file-text"></i>
-                                    Publication
+                                    Rapport
                                 </a>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Projet 2: Modélisation Turbulence -->
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="https://images.pexels.com/photos/2280568/pexels-photo-2280568.jpeg" alt="Calcul parallèle">
-                        </div>
-                        <div class="project-content">
-                            <h3>Calcul Parallèle Haute Performance</h3>
-                            <p>Implémentation d'algorithmes de calcul parallèle pour la résolution de systèmes d'équations complexes en mécanique des fluides. Optimisation MPI/OpenMP.</p>
-                            <div class="project-tags">
-                                <span class="tag">HPC</span>
-                                <span class="tag">MPI</span>
-                                <span class="tag">OpenMP</span>
-                                <span class="tag">Linux</span>
-                            </div>
-                            <div class="project-actions">
-                                <a href="#" class="btn btn-outline">
-                                    <i data-lucide="external-link"></i>
-                                    Voir détails
-                                </a>
-                                <a href="#" class="btn btn-outline">
-                                    <i data-lucide="github"></i>
-                                    Code
-                                </a>
+                            <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+                                CFD
                             </div>
                         </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="https://images.pexels.com/photos/2280547/pexels-photo-2280547.jpeg" alt="DFT">
-                        </div>
                         <div class="project-content">
-                            <h3>Théorie de la Fonctionnelle de Densité</h3>
-                            <p>Recherche en physique de la matière condensée utilisant la DFT. Estimation d'erreurs et optimisation de méthodes numériques avec Julia et DFTK.</p>
+                            <h3>Modélisation des Écoulements Turbulents</h3>
+                            <p>Étude comparative de modèles de turbulence (k-ω SST, Spalart-Allmaras) avec ANSYS Fluent. Validation sur plaque plane, profil NACA 0012 et marche descendante. Analyse de convergence en maillage et comparaison avec données NASA.</p>
                             <div class="project-tags">
-                                <span class="tag">DFT</span>
-                                <span class="tag">Julia</span>
-                                <span class="tag">DFTK</span>
-                                <span class="tag">Recherche</span>
+                                <span class="tag">ANSYS Fluent</span>
+                                <span class="tag">Turbulence</span>
+                                <span class="tag">k-ω SST</span>
+                                <span class="tag">Spalart-Allmaras</span>
+                                <span class="tag">CFD</span>
+                                <span class="tag">Validation</span>
                             </div>
                             <div class="project-actions">
                                 <a href="#" class="btn btn-outline">
@@ -163,55 +121,83 @@
                         </div>
                     </div>
 
+                    <!-- Projet 3: DFT et Gross-Pitaevskii -->
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="https://images.pexels.com/photos/2280570/pexels-photo-2280570.jpeg" alt="Validation expérimentale">
+                            <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+                                DFT
+                            </div>
                         </div>
                         <div class="project-content">
-                            <h3>Validation Expérimentale de Modèles</h3>
-                            <p>Comparaison et validation de modèles numériques avec des données expérimentales. Analyse statistique des écarts et amélioration des prédictions.</p>
+                            <h3>DFT et Équation de Gross-Pitaevskii</h3>
+                            <p>Optimisation de méthodes numériques pour la théorie de la fonctionnelle de densité. Implémentation d'algorithmes de point fixe et descente de gradient avec Julia/DFTK. Estimation d'erreurs et convergence stochastique.</p>
                             <div class="project-tags">
-                                <span class="tag">Validation</span>
-                                <span class="tag">Expérimental</span>
-                                <span class="tag">Statistiques</span>
-                                <span class="tag">ANSYS</span>
+                                <span class="tag">Julia</span>
+                                <span class="tag">DFTK</span>
+                                <span class="tag">DFT</span>
+                                <span class="tag">Gross-Pitaevskii</span>
+                                <span class="tag">Optimisation</span>
+                                <span class="tag">Quantum</span>
                             </div>
                             <div class="project-actions">
-                                <a href="#" class="btn btn-outline">
-                                    <i data-lucide="external-link"></i>
-                                    Voir détails
+                                <a href="https://github.com/TahaBamhaoute/Gross-Pitaevskii-equation-in-one-dimension" target="_blank" class="btn btn-outline">
+                                    <i data-lucide="github"></i>
+                                    GitHub
                                 </a>
                                 <a href="#" class="btn btn-outline">
-                                    <i data-lucide="bar-chart"></i>
-                                    Données
+                                    <i data-lucide="file-text"></i>
+                                    Rapport
                                 </a>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="https://images.pexels.com/photos/2280569/pexels-photo-2280569.jpeg" alt="Solveur personnalisé">
+                <!-- Section des détails techniques -->
+                <div style="margin-top: 4rem;">
+                    <div class="section-header">
+                        <h2>Détails Techniques</h2>
+                        <p>Aperçu des méthodes et technologies utilisées dans mes projets de recherche.</p>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                        <!-- Méthodes Numériques -->
+                        <div class="card">
+                            <h3><i data-lucide="calculator" style="width: 1.5rem; height: 1.5rem; color: var(--primary); margin-right: 0.5rem;"></i>Méthodes Numériques</h3>
+                            <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                                <li style="margin-bottom: 0.5rem;">• Différences finies</li>
+                                <li style="margin-bottom: 0.5rem;">• Éléments finis</li>
+                                <li style="margin-bottom: 0.5rem;">• Méthodes de point fixe (SCF)</li>
+                                <li style="margin-bottom: 0.5rem;">• Descente de gradient</li>
+                                <li style="margin-bottom: 0.5rem;">• Ondes planes (DFT)</li>
+                                <li style="margin-bottom: 0.5rem;">• Optimisation stochastique</li>
+                            </ul>
                         </div>
-                        <div class="project-content">
-                            <h3>Développement de Solveur OpenFOAM</h3>
-                            <p>Création d'un solveur personnalisé pour la simulation de mélanges miscibles entre fluides newtoniens et non-newtoniens avec transferts thermiques.</p>
-                            <div class="project-tags">
-                                <span class="tag">OpenFOAM</span>
-                                <span class="tag">Solveur</span>
-                                <span class="tag">C++</span>
-                                <span class="tag">Développement</span>
-                            </div>
-                            <div class="project-actions">
-                                <a href="#" class="btn btn-outline">
-                                    <i data-lucide="external-link"></i>
-                                    Voir détails
-                                </a>
-                                <a href="#" class="btn btn-outline">
-                                    <i data-lucide="github"></i>
-                                    Code
-                                </a>
-                            </div>
+
+                        <!-- Outils et Technologies -->
+                        <div class="card">
+                            <h3><i data-lucide="settings" style="width: 1.5rem; height: 1.5rem; color: var(--primary); margin-right: 0.5rem;"></i>Outils & Technologies</h3>
+                            <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                                <li style="margin-bottom: 0.5rem;">• Fortran + OpenMP</li>
+                                <li style="margin-bottom: 0.5rem;">• Julia + DFTK</li>
+                                <li style="margin-bottom: 0.5rem;">• ANSYS Fluent</li>
+                                <li style="margin-bottom: 0.5rem;">• ParaView</li>
+                                <li style="margin-bottom: 0.5rem;">• Linux/HPC</li>
+                                <li style="margin-bottom: 0.5rem;">• Git/GitHub</li>
+                            </ul>
+                        </div>
+
+                        <!-- Domaines d'Application -->
+                        <div class="card">
+                            <h3><i data-lucide="target" style="width: 1.5rem; height: 1.5rem; color: var(--primary); margin-right: 0.5rem;"></i>Domaines d'Application</h3>
+                            <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                                <li style="margin-bottom: 0.5rem;">• Physique de la matière condensée</li>
+                                <li style="margin-bottom: 0.5rem;">• Mécanique des fluides</li>
+                                <li style="margin-bottom: 0.5rem;">• Transport cinétique</li>
+                                <li style="margin-bottom: 0.5rem;">• Turbulence</li>
+                                <li style="margin-bottom: 0.5rem;">• Structure électronique</li>
+                                <li style="margin-bottom: 0.5rem;">• Aérodynamique</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
