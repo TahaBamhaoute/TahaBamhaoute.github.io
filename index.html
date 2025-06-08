@@ -81,6 +81,9 @@
         }
 
         .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--text-primary);
@@ -92,40 +95,60 @@
             color: var(--primary);
         }
 
+        .nav-brand i {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--primary);
+        }
+
         .nav-menu {
             display: flex;
             gap: 2rem;
-            list-style: none;
         }
 
         .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
             position: relative;
-            padding: 0.5rem 0;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
         .nav-link:hover,
         .nav-link.active {
             color: var(--primary);
+            background: var(--accent);
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
+        .nav-link i {
+            width: 1rem;
+            height: 1rem;
         }
 
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: none;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .nav-toggle i {
+            width: 1.25rem;
+            height: 1.25rem;
         }
 
         .theme-toggle {
@@ -162,6 +185,16 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
+        .profile-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .profile-photo {
             width: 200px;
             height: 200px;
@@ -169,13 +202,284 @@
             object-fit: cover;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            margin: 0 auto 2rem;
-            display: block;
+            position: relative;
+            z-index: 100;
         }
 
         .profile-photo:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
+        }
+
+        /* Vortex de Von Kármán - Écoulement principal */
+        .flow-lines {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary) 20%, var(--primary) 40%, transparent 60%);
+            opacity: 0.3;
+            animation: flow 2s linear infinite;
+        }
+
+        .flow-lines::before,
+        .flow-lines::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary) 15%, var(--primary) 35%, transparent 50%);
+            opacity: 0.6;
+        }
+
+        .flow-lines::before {
+            top: -20px;
+        }
+
+        .flow-lines::after {
+            top: 20px;
+        }
+
+        /* Vortex alternés */
+        .vortex {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .vortex-1 {
+            top: 20%;
+            right: 10%;
+            border-color: var(--primary);
+            animation: vortex-top 4s ease-in-out infinite;
+        }
+
+        .vortex-2 {
+            bottom: 20%;
+            right: 5%;
+            border-color: #06b6d4;
+            animation: vortex-bottom 4s ease-in-out infinite 2s;
+        }
+
+        .vortex-3 {
+            top: 30%;
+            right: -5%;
+            border-color: var(--primary);
+            animation: vortex-top 4s ease-in-out infinite 1s;
+        }
+
+        .vortex-4 {
+            bottom: 30%;
+            right: -10%;
+            border-color: #06b6d4;
+            animation: vortex-bottom 4s ease-in-out infinite 3s;
+        }
+
+        /* Particules de fluide */
+        .fluid-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .particle-1 {
+            top: 45%;
+            left: 0;
+            animation: particle-flow-1 3s linear infinite;
+        }
+
+        .particle-2 {
+            top: 50%;
+            left: 0;
+            animation: particle-flow-2 3s linear infinite 0.5s;
+        }
+
+        .particle-3 {
+            top: 55%;
+            left: 0;
+            animation: particle-flow-3 3s linear infinite 1s;
+        }
+
+        .particle-4 {
+            top: 40%;
+            left: 0;
+            animation: particle-flow-1 3s linear infinite 1.5s;
+        }
+
+        .particle-5 {
+            top: 60%;
+            left: 0;
+            animation: particle-flow-2 3s linear infinite 2s;
+        }
+
+        /* Animations */
+        @keyframes flow {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.3;
+            }
+            80% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes vortex-top {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(0deg);
+            }
+            25% {
+                opacity: 0.8;
+                transform: scale(1) rotate(90deg);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.2) rotate(180deg);
+            }
+            75% {
+                opacity: 0.4;
+                transform: scale(1.5) rotate(270deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) rotate(360deg);
+                right: -20%;
+            }
+        }
+
+        @keyframes vortex-bottom {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(0deg);
+            }
+            25% {
+                opacity: 0.8;
+                transform: scale(1) rotate(-90deg);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.2) rotate(-180deg);
+            }
+            75% {
+                opacity: 0.4;
+                transform: scale(1.5) rotate(-270deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) rotate(-360deg);
+                right: -20%;
+            }
+        }
+
+        @keyframes particle-flow-1 {
+            0% {
+                opacity: 0;
+                transform: translateX(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            30% {
+                transform: translateX(120px);
+            }
+            35% {
+                transform: translateX(130px) translateY(-10px);
+            }
+            45% {
+                transform: translateX(160px) translateY(-15px);
+            }
+            55% {
+                transform: translateX(190px) translateY(-10px);
+            }
+            65% {
+                transform: translateX(220px) translateY(0px);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(300px);
+            }
+        }
+
+        @keyframes particle-flow-2 {
+            0% {
+                opacity: 0;
+                transform: translateX(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            30% {
+                transform: translateX(120px);
+            }
+            40% {
+                transform: translateX(140px);
+            }
+            50% {
+                transform: translateX(170px);
+            }
+            60% {
+                transform: translateX(200px);
+            }
+            70% {
+                transform: translateX(230px);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(300px);
+            }
+        }
+
+        @keyframes particle-flow-3 {
+            0% {
+                opacity: 0;
+                transform: translateX(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            30% {
+                transform: translateX(120px);
+            }
+            35% {
+                transform: translateX(130px) translateY(10px);
+            }
+            45% {
+                transform: translateX(160px) translateY(15px);
+            }
+            55% {
+                transform: translateX(190px) translateY(10px);
+            }
+            65% {
+                transform: translateX(220px) translateY(0px);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(300px);
+            }
         }
 
         .hero-greeting {
@@ -302,11 +606,38 @@
             }
 
             .nav-menu {
-                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--background);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0.5rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-toggle {
+                display: block;
             }
 
             .hero-greeting {
                 font-size: 2rem;
+            }
+
+            .profile-container {
+                width: 250px;
+                height: 250px;
             }
 
             .profile-photo {
@@ -316,6 +647,114 @@
 
             .section-title {
                 font-size: 2rem;
+            }
+
+            /* Vortex plus petits sur mobile */
+            .vortex {
+                width: 20px;
+                height: 20px;
+            }
+
+            .fluid-particle {
+                width: 3px;
+                height: 3px;
+            }
+
+            /* Animations adaptées pour mobile */
+            @keyframes particle-flow-1 {
+                0% {
+                    opacity: 0;
+                    transform: translateX(0);
+                }
+                10% {
+                    opacity: 1;
+                }
+                30% {
+                    transform: translateX(80px);
+                }
+                35% {
+                    transform: translateX(90px) translateY(-8px);
+                }
+                45% {
+                    transform: translateX(110px) translateY(-10px);
+                }
+                55% {
+                    transform: translateX(130px) translateY(-8px);
+                }
+                65% {
+                    transform: translateX(150px) translateY(0px);
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateX(200px);
+                }
+            }
+
+            @keyframes particle-flow-2 {
+                0% {
+                    opacity: 0;
+                    transform: translateX(0);
+                }
+                10% {
+                    opacity: 1;
+                }
+                30% {
+                    transform: translateX(80px);
+                }
+                40% {
+                    transform: translateX(95px);
+                }
+                50% {
+                    transform: translateX(115px);
+                }
+                60% {
+                    transform: translateX(135px);
+                }
+                70% {
+                    transform: translateX(155px);
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateX(200px);
+                }
+            }
+
+            @keyframes particle-flow-3 {
+                0% {
+                    opacity: 0;
+                    transform: translateX(0);
+                }
+                10% {
+                    opacity: 1;
+                }
+                30% {
+                    transform: translateX(80px);
+                }
+                35% {
+                    transform: translateX(90px) translateY(8px);
+                }
+                45% {
+                    transform: translateX(110px) translateY(10px);
+                }
+                55% {
+                    transform: translateX(130px) translateY(8px);
+                }
+                65% {
+                    transform: translateX(150px) translateY(0px);
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateX(200px);
+                }
             }
         }
 
@@ -358,11 +797,11 @@
                     <span>Taha Bamhaoute</span>
                 </a>
                 <div class="nav-menu" id="nav-menu">
-                    <a href="index.html" class="nav-link">
+                    <a href="index.html" class="nav-link active">
                         <i data-lucide="home"></i>
                         <span>Accueil</span>
                     </a>
-                    <a href="cv.html" class="nav-link active">
+                    <a href="cv.html" class="nav-link">
                         <i data-lucide="file-text"></i>
                         <span>CV</span>
                     </a>
@@ -392,7 +831,26 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <img src="IMG_1234.jpeg" alt="Taha Bamhaoute" class="profile-photo">
+                <div class="profile-container">
+                    <img src="IMG_1234.jpeg" alt="Taha Bamhaoute" class="profile-photo">
+                    
+                    <!-- Lignes d'écoulement -->
+                    <div class="flow-lines"></div>
+                    
+                    <!-- Vortex de Von Kármán -->
+                    <div class="vortex vortex-1"></div>
+                    <div class="vortex vortex-2"></div>
+                    <div class="vortex vortex-3"></div>
+                    <div class="vortex vortex-4"></div>
+                    
+                    <!-- Particules de fluide -->
+                    <div class="fluid-particle particle-1"></div>
+                    <div class="fluid-particle particle-2"></div>
+                    <div class="fluid-particle particle-3"></div>
+                    <div class="fluid-particle particle-4"></div>
+                    <div class="fluid-particle particle-5"></div>
+                </div>
+                
                 <h1 class="hero-greeting">Hi 👋</h1>
                 <p class="hero-description">
                     Je suis Taha, ingénieur spécialisé en simulation numérique et mécanique des fluides computationnelle (CFD).
@@ -471,8 +929,41 @@
             }
         }
 
-        // Initialize theme manager
+        // Navigation management
+        class NavigationManager {
+            constructor() {
+                this.navToggle = document.getElementById('nav-toggle');
+                this.navMenu = document.getElementById('nav-menu');
+                this.navLinks = document.querySelectorAll('.nav-link');
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                // Mobile menu toggle
+                if (this.navToggle && this.navMenu) {
+                    this.navToggle.addEventListener('click', () => {
+                        this.navMenu.classList.toggle('active');
+                    });
+                }
+
+                // Close mobile menu when clicking on links
+                this.navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (this.navMenu) {
+                            this.navMenu.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        }
+
+        // Initialize components
         new ThemeManager();
+        new NavigationManager();
 
         // Initialize Lucide icons
         document.addEventListener('DOMContentLoaded', function() {
