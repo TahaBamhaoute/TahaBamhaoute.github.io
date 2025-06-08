@@ -275,7 +275,7 @@
             right: 0;
             height: 2px;
             background: linear-gradient(90deg, transparent 0%, var(--primary) 20%, var(--primary) 40%, transparent 60%);
-            opacity: 0.3;
+            opacity: 0.4;
             animation: flow 2s linear infinite;
         }
 
@@ -318,7 +318,7 @@
         .vortex-2 {
             bottom: 20%;
             right: 5%;
-            border-color: #06b6d4;
+            border-color: var(--primary);
             animation: vortex-bottom 4s ease-in-out infinite 2s;
         }
 
@@ -332,7 +332,7 @@
         .vortex-4 {
             bottom: 30%;
             right: -10%;
-            border-color: #06b6d4;
+            border-color: var(--primary);
             animation: vortex-bottom 4s ease-in-out infinite 3s;
         }
 
@@ -986,5 +986,75 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Script d'urgence pour forcer le bon fonctionnement du thème
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser Lucide icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+            // Forcer l'application du thème
+            function forceThemeApplication() {
+                const theme = localStorage.getItem('theme') || 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.className = theme;
+                document.body.setAttribute('data-theme', theme);
+                document.body.className = theme;
+            }
+
+            // Appliquer le thème immédiatement
+            forceThemeApplication();
+
+            // Toggle thème personnalisé
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = localStorage.getItem('theme') || 'light';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    
+                    localStorage.setItem('theme', newTheme);
+                    
+                    // Appliquer sur tous les éléments
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    document.documentElement.className = newTheme;
+                    document.body.setAttribute('data-theme', newTheme);
+                    document.body.className = newTheme;
+                    
+                    console.log('Theme changed to:', newTheme);
+                });
+            }
+
+            // Navigation mobile
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            // Fermer le menu mobile sur click des liens
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navMenu) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Appliquer le thème dès le chargement
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            document.documentElement.className = theme;
+            if (document.body) {
+                document.body.setAttribute('data-theme', theme);
+                document.body.className = theme;
+            }
+        })();
+    </script>
 </body>
 </html>
