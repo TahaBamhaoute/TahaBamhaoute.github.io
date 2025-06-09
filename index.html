@@ -778,22 +778,26 @@
                 <div class="nav-menu" id="nav-menu">
                     <a href="index.html" class="nav-link active">
                         <i data-lucide="home"></i>
-                        <span>Accueil</span>
+                        <span data-translate="nav-home">Accueil</span>
                     </a>
                     <a href="cv.html" class="nav-link">
                         <i data-lucide="file-text"></i>
-                        <span>CV</span>
+                        <span data-translate="nav-cv">CV</span>
                     </a>
                     <a href="projects.html" class="nav-link">
                         <i data-lucide="microscope"></i>
-                        <span>Projets</span>
+                        <span data-translate="nav-projects">Projets</span>
                     </a>
                     <a href="contact.html" class="nav-link">
                         <i data-lucide="mail"></i>
-                        <span>Contact</span>
+                        <span data-translate="nav-contact">Contact</span>
                     </a>
                 </div>
                 <div class="nav-actions">
+                    <button class="language-toggle" id="language-toggle">
+                        <span class="lang-fr">🇫🇷</span>
+                        <span class="lang-en">🇺🇸</span>
+                    </button>
                     <button class="theme-toggle" id="theme-toggle">
                         <i data-lucide="sun" class="sun-icon"></i>
                         <i data-lucide="moon" class="moon-icon"></i>
@@ -850,19 +854,19 @@
                     <div class="fluid-particle particle-5"></div>
                 </div>
                 
-                <h1 class="hero-greeting">Hi 👋</h1>
-                <p class="hero-description">
+                <h1 class="hero-greeting" data-translate="hero-greeting">Hi 👋</h1>
+                <p class="hero-description" data-translate="hero-description">
                     Je suis Taha, ingénieur spécialisé en simulation numérique et mécanique des fluides computationnelle (CFD).
                 </p>
                 
                 <div class="hero-buttons">
                     <a href="projects.html" class="btn btn-primary">
                         <i data-lucide="arrow-right"></i>
-                        Découvrir mes projets
+                        <span data-translate="btn-projects">Découvrir mes projets</span>
                     </a>
                     <a href="cv.html" class="btn btn-secondary">
                         <i data-lucide="user"></i>
-                        Voir mon CV
+                        <span data-translate="btn-cv">Voir mon CV</span>
                     </a>
                 </div>
             </div>
@@ -872,15 +876,15 @@
     <!-- About Section -->
     <section class="about">
         <div class="container">
-            <h2 class="section-title">À propos</h2>
+            <h2 class="section-title" data-translate="about-title">À propos</h2>
             <div class="about-content">
-                <p class="about-text">
+                <p class="about-text" data-translate="about-text">
                     Passionné par la modélisation numérique et les phénomènes physiques complexes, je développe des solutions innovantes en CFD et simulation pour des applications industrielles et de recherche.
                 </p>
                 
                 <div class="about-highlight">
-                    <h3>Mon parcours</h3>
-                    <p>
+                    <h3 data-translate="journey-title">Mon parcours</h3>
+                    <p data-translate="journey-text">
                         Étudiant en dernière année à ENSEIRB-MATMECA et Master 2 MEFA à l'Université de Bordeaux, je me spécialise dans le développement de modèles numériques avancés pour résoudre des problèmes d'ingénierie et contribuer à des solutions durables.
                     </p>
                 </div>
@@ -903,11 +907,88 @@
                         <i data-lucide="mail"></i>
                     </a>
                 </div>
-                <p class="footer-text">© 2025 Taha Bamhaoute. Tous droits réservés.</p>
+                <p class="footer-text" data-translate="footer-text">© 2025 Taha Bamhaoute. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Système de traduction
+        const translations = {
+            fr: {
+                'nav-home': 'Accueil',
+                'nav-cv': 'CV',
+                'nav-projects': 'Projets',
+                'nav-contact': 'Contact',
+                'hero-greeting': 'Hi 👋',
+                'hero-description': 'Je suis Taha, ingénieur spécialisé en simulation numérique et mécanique des fluides computationnelle (CFD).',
+                'btn-projects': 'Découvrir mes projets',
+                'btn-cv': 'Voir mon CV',
+                'about-title': 'À propos',
+                'about-text': 'Passionné par la modélisation numérique et les phénomènes physiques complexes, je développe des solutions innovantes en CFD et simulation pour des applications industrielles et de recherche.',
+                'journey-title': 'Mon parcours',
+                'journey-text': 'Étudiant en dernière année à ENSEIRB-MATMECA et Master 2 MEFA à l\'Université de Bordeaux, je me spécialise dans le développement de modèles numériques avancés pour résoudre des problèmes d\'ingénierie et contribuer à des solutions durables.',
+                'footer-text': '© 2025 Taha Bamhaoute. Tous droits réservés.'
+            },
+            en: {
+                'nav-home': 'Home',
+                'nav-cv': 'Resume',
+                'nav-projects': 'Projects',
+                'nav-contact': 'Contact',
+                'hero-greeting': 'Hi 👋',
+                'hero-description': 'I am Taha, an engineer specialized in numerical simulation and computational fluid dynamics (CFD).',
+                'btn-projects': 'Discover my projects',
+                'btn-cv': 'View my resume',
+                'about-title': 'About',
+                'about-text': 'Passionate about numerical modeling and complex physical phenomena, I develop innovative CFD and simulation solutions for industrial and research applications.',
+                'journey-title': 'My journey',
+                'journey-text': 'Final year student at ENSEIRB-MATMECA and Master 2 MEFA at the University of Bordeaux, I specialize in developing advanced numerical models to solve engineering problems and contribute to sustainable solutions.',
+                'footer-text': '© 2025 Taha Bamhaoute. All rights reserved.'
+            }
+        };
+
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('language') || 'fr';
+                this.init();
+            }
+
+            init() {
+                this.applyLanguage();
+                this.bindEvents();
+            }
+
+            applyLanguage() {
+                document.documentElement.setAttribute('data-lang', this.currentLang);
+                localStorage.setItem('language', this.currentLang);
+                
+                // Traduire tous les éléments
+                document.querySelectorAll('[data-translate]').forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (translations[this.currentLang] && translations[this.currentLang][key]) {
+                        element.textContent = translations[this.currentLang][key];
+                    }
+                });
+            }
+
+            toggle() {
+                this.currentLang = this.currentLang === 'fr' ? 'en' : 'fr';
+                this.applyLanguage();
+            }
+
+            bindEvents() {
+                const langToggle = document.getElementById('language-toggle');
+                if (langToggle) {
+                    langToggle.addEventListener('click', () => this.toggle());
+                }
+            }
+        }
+
+        // Initialiser le gestionnaire de langue
+        document.addEventListener('DOMContentLoaded', function() {
+            new LanguageManager();
+        });
+    </script>
 </body>
 </html>
