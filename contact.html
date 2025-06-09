@@ -21,22 +21,25 @@
                 <div class="nav-menu" id="nav-menu">
                     <a href="index.html" class="nav-link">
                         <i data-lucide="home"></i>
-                        <span>Accueil</span>
+                        <span data-translate="nav-home">Accueil</span>
                     </a>
                     <a href="cv.html" class="nav-link">
                         <i data-lucide="file-text"></i>
-                        <span>CV</span>
+                        <span data-translate="nav-cv">CV</span>
                     </a>
                     <a href="projects.html" class="nav-link">
                         <i data-lucide="microscope"></i>
-                        <span>Projets</span>
+                        <span data-translate="nav-projects">Projets</span>
                     </a>
                     <a href="contact.html" class="nav-link active">
                         <i data-lucide="mail"></i>
-                        <span>Contact</span>
+                        <span data-translate="nav-contact">Contact</span>
                     </a>
                 </div>
                 <div class="nav-actions">
+                    <button class="language-toggle" id="language-toggle">
+                        <i data-lucide="languages"></i>
+                    </button>
                     <button class="theme-toggle" id="theme-toggle">
                         <i data-lucide="sun" class="sun-icon"></i>
                         <i data-lucide="moon" class="moon-icon"></i>
@@ -55,15 +58,15 @@
         <section class="contact page-section">
             <div class="container">
                 <div class="section-header">
-                    <h1>Contact</h1>
-                    <p>N'hésitez pas à me contacter pour discuter de collaborations ou d'opportunités.</p>
+                    <h1 data-translate="contact-title">Contact</h1>
+                    <p data-translate="contact-subtitle">N'hésitez pas à me contacter pour discuter de collaborations ou d'opportunités.</p>
                 </div>
                 <div class="contact-content">
                     <div class="contact-info">
                         <div class="contact-item">
                             <i data-lucide="mail"></i>
                             <div>
-                                <h4>Email</h4>
+                                <h4 data-translate="email-label">Email</h4>
                                 <p>bamask3@gmail.com</p>
                             </div>
                         </div>
@@ -84,31 +87,31 @@
                         <div class="contact-item">
                             <i data-lucide="map-pin"></i>
                             <div>
-                                <h4>Localisation</h4>
-                                <p>Lyon, France</p>
+                                <h4 data-translate="location-label">Localisation</h4>
+                                <p data-translate="location-value">Lyon, France</p>
                             </div>
                         </div>
                     </div>
                     <form class="contact-form" action="https://formspree.io/f/mzzgeboy" method="POST">
                         <div class="form-group">
-                            <label for="name">Nom</label>
+                            <label for="name" data-translate="form-name">Nom</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email" data-translate="form-email">Email</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="subject">Sujet</label>
+                            <label for="subject" data-translate="form-subject">Sujet</label>
                             <input type="text" id="subject" name="subject" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
+                            <label for="message" data-translate="form-message">Message</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">
                             <i data-lucide="send"></i>
-                            Envoyer
+                            <span data-translate="form-send">Envoyer</span>
                         </button>
                     </form>
                 </div>
@@ -122,7 +125,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Taha Bamhaoute</h3>
-                    <p>Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.</p>
+                    <p data-translate="footer-description">Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.</p>
                     <div class="social-links">
                         <a href="https://github.com/TahaBamhaoute" target="_blank">
                             <i data-lucide="github"></i>
@@ -136,20 +139,110 @@
                     </div>
                 </div>
                 <div class="footer-section">
-                    <h4>Liens Rapides</h4>
+                    <h4 data-translate="quick-links">Liens Rapides</h4>
                     <nav class="footer-nav">
-                        <a href="index.html">Accueil</a>
-                        <a href="cv.html">CV</a>
-                        <a href="projects.html">Projets</a>
-                        <a href="contact.html">Contact</a>
+                        <a href="index.html" data-translate="nav-home">Accueil</a>
+                        <a href="cv.html" data-translate="nav-cv">CV</a>
+                        <a href="projects.html" data-translate="nav-projects">Projets</a>
+                        <a href="contact.html" data-translate="nav-contact">Contact</a>
                     </nav>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Taha Bamhaoute. Tous droits réservés.</p>
+                <p data-translate="footer-text">&copy; 2025 Taha Bamhaoute. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+        // Système de traduction pour Contact
+        const translations = {
+            fr: {
+                'nav-home': 'Accueil',
+                'nav-cv': 'CV',
+                'nav-projects': 'Projets',
+                'nav-contact': 'Contact',
+                'contact-title': 'Contact',
+                'contact-subtitle': 'N\'hésitez pas à me contacter pour discuter de collaborations ou d\'opportunités.',
+                'email-label': 'Email',
+                'location-label': 'Localisation',
+                'location-value': 'Lyon, France',
+                'form-name': 'Nom',
+                'form-email': 'Email',
+                'form-subject': 'Sujet',
+                'form-message': 'Message',
+                'form-send': 'Envoyer',
+                'footer-description': 'Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.',
+                'quick-links': 'Liens Rapides',
+                'footer-text': '© 2025 Taha Bamhaoute. Tous droits réservés.'
+            },
+            en: {
+                'nav-home': 'Home',
+                'nav-cv': 'Resume',
+                'nav-projects': 'Projects',
+                'nav-contact': 'Contact',
+                'contact-title': 'Contact',
+                'contact-subtitle': 'Feel free to contact me to discuss collaborations or opportunities.',
+                'email-label': 'Email',
+                'location-label': 'Location',
+                'location-value': 'Lyon, France',
+                'form-name': 'Name',
+                'form-email': 'Email',
+                'form-subject': 'Subject',
+                'form-message': 'Message',
+                'form-send': 'Send',
+                'footer-description': 'Specialist in numerical fluid mechanics and simulation, with a focus on plastic recycling applications.',
+                'quick-links': 'Quick Links',
+                'footer-text': '© 2025 Taha Bamhaoute. All rights reserved.'
+            }
+        };
+
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('language') || 'fr';
+                this.init();
+            }
+
+            init() {
+                this.applyLanguage();
+                this.bindEvents();
+            }
+
+            applyLanguage() {
+                document.documentElement.setAttribute('data-lang', this.currentLang);
+                localStorage.setItem('language', this.currentLang);
+                
+                // Traduire tous les éléments
+                document.querySelectorAll('[data-translate]').forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (translations[this.currentLang] && translations[this.currentLang][key]) {
+                        element.textContent = translations[this.currentLang][key];
+                    }
+                });
+            }
+
+            toggle() {
+                this.currentLang = this.currentLang === 'fr' ? 'en' : 'fr';
+                this.applyLanguage();
+            }
+
+            bindEvents() {
+                const langToggle = document.getElementById('language-toggle');
+                if (langToggle) {
+                    langToggle.addEventListener('click', () => this.toggle());
+                }
+            }
+        }
+
+        // Initialiser le gestionnaire de langue
+        document.addEventListener('DOMContentLoaded', function() {
+            new LanguageManager();
+            
+            // Initialiser Lucide icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    </script>
 </body>
 </html>

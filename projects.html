@@ -21,22 +21,25 @@
                 <div class="nav-menu" id="nav-menu">
                     <a href="index.html" class="nav-link">
                         <i data-lucide="home"></i>
-                        <span>Accueil</span>
+                        <span data-translate="nav-home">Accueil</span>
                     </a>
                     <a href="cv.html" class="nav-link">
                         <i data-lucide="file-text"></i>
-                        <span>CV</span>
+                        <span data-translate="nav-cv">CV</span>
                     </a>
                     <a href="projects.html" class="nav-link active">
                         <i data-lucide="microscope"></i>
-                        <span>Projets</span>
+                        <span data-translate="nav-projects">Projets</span>
                     </a>
                     <a href="contact.html" class="nav-link">
                         <i data-lucide="mail"></i>
-                        <span>Contact</span>
+                        <span data-translate="nav-contact">Contact</span>
                     </a>
                 </div>
                 <div class="nav-actions">
+                    <button class="language-toggle" id="language-toggle">
+                        <i data-lucide="languages"></i>
+                    </button>
                     <button class="theme-toggle" id="theme-toggle">
                         <i data-lucide="sun" class="sun-icon"></i>
                         <i data-lucide="moon" class="moon-icon"></i>
@@ -55,8 +58,8 @@
         <section class="projects page-section">
             <div class="container">
                 <div class="section-header">
-                    <h1>Projets & Recherches</h1>
-                    <p>Découvrez mes travaux en simulation numérique, CFD et physique de la matière condensée.</p>
+                    <h1 data-translate="projects-title">Projets & Recherches</h1>
+                    <p data-translate="projects-subtitle">Découvrez mes travaux en simulation numérique, CFD et physique de la matière condensée.</p>
                 </div>
                 <div class="projects-grid">
                     <!-- Projet 1: Équation de Boltzmann -->
@@ -67,15 +70,15 @@
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3>Résolution de l'équation de Boltzmann 1D</h3>
-                            <p>Implémentation en Fortran de méthodes numériques pour résoudre l'équation cinétique de Boltzmann avec modèle BGK. Étude des régimes de transport avec et sans collision, parallélisation OpenMP et validation numérique.</p>
+                            <h3 data-translate="project1-title">Résolution de l'équation de Boltzmann 1D</h3>
+                            <p data-translate="project1-desc">Implémentation en Fortran de méthodes numériques pour résoudre l'équation cinétique de Boltzmann avec modèle BGK. Étude des régimes de transport avec et sans collision, parallélisation OpenMP et validation numérique.</p>
                             <div class="project-tags">
                                 <span class="tag">Fortran</span>
                                 <span class="tag">Boltzmann</span>
                                 <span class="tag">BGK</span>
                                 <span class="tag">OpenMP</span>
-                                <span class="tag">Différences finies</span>
-                                <span class="tag">Transport</span>
+                                <span class="tag" data-translate="tag-finite-diff">Différences finies</span>
+                                <span class="tag" data-translate="tag-transport">Transport</span>
                             </div>
                             <div class="project-actions">
                                 <a href="https://github.com/TahaBamhaoute/Boltzeman-BGK" target="_blank" class="btn btn-outline">
@@ -84,7 +87,7 @@
                                 </a>
                                 <a href="rapport/rapport_boltzmann_bgk.pdf" target="_blank" class="btn btn-outline">
                                     <i data-lucide="file-text"></i>
-                                    Rapport
+                                    <span data-translate="report-btn">Rapport</span>
                                 </a>
                             </div>
                         </div>
@@ -96,20 +99,20 @@
                             <img src="animation/animation.gif" alt="Animation CFD - Modélisation des écoulements turbulents" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
                         </div>
                         <div class="project-content">
-                            <h3>Modélisation des Écoulements Turbulents</h3>
-                            <p>Étude comparative de modèles de turbulence (k-ω SST, Spalart-Allmaras) avec ANSYS Fluent. Validation sur plaque plane, profil NACA 0012 et marche descendante. Analyse de convergence en maillage et comparaison avec données NASA.</p>
+                            <h3 data-translate="project2-title">Modélisation des Écoulements Turbulents</h3>
+                            <p data-translate="project2-desc">Étude comparative de modèles de turbulence (k-ω SST, Spalart-Allmaras) avec ANSYS Fluent. Validation sur plaque plane, profil NACA 0012 et marche descendante. Analyse de convergence en maillage et comparaison avec données NASA.</p>
                             <div class="project-tags">
                                 <span class="tag">ANSYS Fluent</span>
-                                <span class="tag">Turbulence</span>
+                                <span class="tag" data-translate="tag-turbulence">Turbulence</span>
                                 <span class="tag">k-ω SST</span>
                                 <span class="tag">Spalart-Allmaras</span>
                                 <span class="tag">CFD</span>
-                                <span class="tag">Validation</span>
+                                <span class="tag" data-translate="tag-validation">Validation</span>
                             </div>
                             <div class="project-actions">
                                 <a href="rapport/rapport_turbulence_fluent.pdf" target="_blank" class="btn btn-outline">
                                     <i data-lucide="file-text"></i>
-                                    Rapport
+                                    <span data-translate="report-btn">Rapport</span>
                                 </a>
                             </div>
                         </div>
@@ -121,15 +124,15 @@
                             <img src="image/image-003.png" alt="DFTK" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                         </div>
                         <div class="project-content">
-                            <h3>DFT et Équation de Gross-Pitaevskii</h3>
-                            <p>Optimisation de méthodes numériques pour la théorie de la fonctionnelle de densité. Implémentation d'algorithmes de point fixe et descente de gradient avec Julia/DFTK. Estimation d'erreurs et convergence stochastique.</p>
+                            <h3 data-translate="project3-title">DFT et Équation de Gross-Pitaevskii</h3>
+                            <p data-translate="project3-desc">Optimisation de méthodes numériques pour la théorie de la fonctionnelle de densité. Implémentation d'algorithmes de point fixe et descente de gradient avec Julia/DFTK. Estimation d'erreurs et convergence stochastique.</p>
                             <div class="project-tags">
                                 <span class="tag">Julia</span>
                                 <span class="tag">DFTK</span>
                                 <span class="tag">DFT</span>
                                 <span class="tag">Gross-Pitaevskii</span>
-                                <span class="tag">Optimisation</span>
-                                <span class="tag">Quantum</span>
+                                <span class="tag" data-translate="tag-optimization">Optimisation</span>
+                                <span class="tag" data-translate="tag-quantum">Quantum</span>
                             </div>
                             <div class="project-actions">
                                 <a href="https://github.com/TahaBamhaoute/Gross-Pitaevskii-equation-in-one-dimension" target="_blank" class="btn btn-outline">
@@ -138,7 +141,7 @@
                                 </a>
                                 <a href="rapport/rapport_dft_stage.pdf" target="_blank" class="btn btn-outline">
                                     <i data-lucide="file-text"></i>
-                                    Rapport
+                                    <span data-translate="report-btn">Rapport</span>
                                 </a>
                             </div>
                         </div>
@@ -148,27 +151,27 @@
                 <!-- Section des détails techniques -->
                 <div style="margin-top: 4rem;">
                     <div class="section-header">
-                        <h2>Détails Techniques</h2>
-                        <p>Aperçu des méthodes et technologies utilisées dans mes projets de recherche.</p>
+                        <h2 data-translate="technical-details">Détails Techniques</h2>
+                        <p data-translate="technical-subtitle">Aperçu des méthodes et technologies utilisées dans mes projets de recherche.</p>
                     </div>
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
                         <!-- Méthodes Numériques -->
                         <div class="card">
-                            <h3><i data-lucide="calculator" style="width: 1.5rem; height: 1.5rem; color: var(--primary); margin-right: 0.5rem;"></i>Méthodes Numériques</h3>
+                            <h3><i data-lucide="calculator" style="width: 1.5rem; height: 1.5rem; color: var(--primary); margin-right: 0.5rem;"></i><span data-translate="numerical-methods">Méthodes Numériques</span></h3>
                             <ul style="list-style: none; padding: 0; margin-top: 1rem;">
-                                <li style="margin-bottom: 0.5rem;">• Différences finies</li>
-                                <li style="margin-bottom: 0.5rem;">• Éléments finis</li>
-                                <li style="margin-bottom: 0.5rem;">• Méthodes de point fixe (SCF)</li>
-                                <li style="margin-bottom: 0.5rem;">• Descente de gradient</li>
-                                <li style="margin-bottom: 0.5rem;">• Ondes planes (DFT)</li>
-                                <li style="margin-bottom: 0.5rem;">• Optimisation stochastique</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="method1">• Différences finies</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="method2">• Éléments finis</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="method3">• Méthodes de point fixe (SCF)</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="method4">• Descente de gradient</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="method5">• Ondes planes (DFT)</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="method6">• Optimisation stochastique</li>
                             </ul>
                         </div>
 
                         <!-- Outils et Technologies -->
                         <div class="card">
-                            <h3><i data-lucide="settings" style="width: 1.5rem; height: 1.5rem; color: var(--primary); margin-right: 0.5rem;"></i>Outils & Technologies</h3>
+                            <h3><i data-lucide="settings" style="width: 1.5rem; height: 1.5rem; color: var(--primary); margin-right: 0.5rem;"></i><span data-translate="tools-tech">Outils & Technologies</span></h3>
                             <ul style="list-style: none; padding: 0; margin-top: 1rem;">
                                 <li style="margin-bottom: 0.5rem;">• Fortran + OpenMP</li>
                                 <li style="margin-bottom: 0.5rem;">• Julia + DFTK</li>
@@ -181,14 +184,14 @@
 
                         <!-- Domaines d'Application -->
                         <div class="card">
-                            <h3><i data-lucide="target" style="width: 1.5rem; height: 1.5rem; color: var(--primary); margin-right: 0.5rem;"></i>Domaines d'Application</h3>
+                            <h3><i data-lucide="target" style="width: 1.5rem; height: 1.5rem; color: var(--primary); margin-right: 0.5rem;"></i><span data-translate="application-domains">Domaines d'Application</span></h3>
                             <ul style="list-style: none; padding: 0; margin-top: 1rem;">
-                                <li style="margin-bottom: 0.5rem;">• Physique de la matière condensée</li>
-                                <li style="margin-bottom: 0.5rem;">• Mécanique des fluides</li>
-                                <li style="margin-bottom: 0.5rem;">• Transport cinétique</li>
-                                <li style="margin-bottom: 0.5rem;">• Turbulence</li>
-                                <li style="margin-bottom: 0.5rem;">• Structure électronique</li>
-                                <li style="margin-bottom: 0.5rem;">• Aérodynamique</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="domain1">• Physique de la matière condensée</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="domain2">• Mécanique des fluides</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="domain3">• Transport cinétique</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="domain4">• Turbulence</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="domain5">• Structure électronique</li>
+                                <li style="margin-bottom: 0.5rem;" data-translate="domain6">• Aérodynamique</li>
                             </ul>
                         </div>
                     </div>
@@ -203,7 +206,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Taha Bamhaoute</h3>
-                    <p>Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.</p>
+                    <p data-translate="footer-description">Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.</p>
                     <div class="social-links">
                         <a href="https://github.com/TahaBamhaoute" target="_blank">
                             <i data-lucide="github"></i>
@@ -217,20 +220,154 @@
                     </div>
                 </div>
                 <div class="footer-section">
-                    <h4>Liens Rapides</h4>
+                    <h4 data-translate="quick-links">Liens Rapides</h4>
                     <nav class="footer-nav">
-                        <a href="index.html">Accueil</a>
-                        <a href="cv.html">CV</a>
-                        <a href="projects.html">Projets</a>
-                        <a href="contact.html">Contact</a>
+                        <a href="index.html" data-translate="nav-home">Accueil</a>
+                        <a href="cv.html" data-translate="nav-cv">CV</a>
+                        <a href="projects.html" data-translate="nav-projects">Projets</a>
+                        <a href="contact.html" data-translate="nav-contact">Contact</a>
                     </nav>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Taha Bamhaoute. Tous droits réservés.</p>
+                <p data-translate="footer-text">&copy; 2025 Taha Bamhaoute. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
     <script src="script.js"></script>
+    <script>
+        // Système de traduction pour Projects
+        const translations = {
+            fr: {
+                'nav-home': 'Accueil',
+                'nav-cv': 'CV',
+                'nav-projects': 'Projets',
+                'nav-contact': 'Contact',
+                'projects-title': 'Projets & Recherches',
+                'projects-subtitle': 'Découvrez mes travaux en simulation numérique, CFD et physique de la matière condensée.',
+                'project1-title': 'Résolution de l\'équation de Boltzmann 1D',
+                'project1-desc': 'Implémentation en Fortran de méthodes numériques pour résoudre l\'équation cinétique de Boltzmann avec modèle BGK. Étude des régimes de transport avec et sans collision, parallélisation OpenMP et validation numérique.',
+                'project2-title': 'Modélisation des Écoulements Turbulents',
+                'project2-desc': 'Étude comparative de modèles de turbulence (k-ω SST, Spalart-Allmaras) avec ANSYS Fluent. Validation sur plaque plane, profil NACA 0012 et marche descendante. Analyse de convergence en maillage et comparaison avec données NASA.',
+                'project3-title': 'DFT et Équation de Gross-Pitaevskii',
+                'project3-desc': 'Optimisation de méthodes numériques pour la théorie de la fonctionnelle de densité. Implémentation d\'algorithmes de point fixe et descente de gradient avec Julia/DFTK. Estimation d\'erreurs et convergence stochastique.',
+                'tag-finite-diff': 'Différences finies',
+                'tag-transport': 'Transport',
+                'tag-turbulence': 'Turbulence',
+                'tag-validation': 'Validation',
+                'tag-optimization': 'Optimisation',
+                'tag-quantum': 'Quantum',
+                'report-btn': 'Rapport',
+                'technical-details': 'Détails Techniques',
+                'technical-subtitle': 'Aperçu des méthodes et technologies utilisées dans mes projets de recherche.',
+                'numerical-methods': 'Méthodes Numériques',
+                'method1': '• Différences finies',
+                'method2': '• Éléments finis',
+                'method3': '• Méthodes de point fixe (SCF)',
+                'method4': '• Descente de gradient',
+                'method5': '• Ondes planes (DFT)',
+                'method6': '• Optimisation stochastique',
+                'tools-tech': 'Outils & Technologies',
+                'application-domains': 'Domaines d\'Application',
+                'domain1': '• Physique de la matière condensée',
+                'domain2': '• Mécanique des fluides',
+                'domain3': '• Transport cinétique',
+                'domain4': '• Turbulence',
+                'domain5': '• Structure électronique',
+                'domain6': '• Aérodynamique',
+                'footer-description': 'Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.',
+                'quick-links': 'Liens Rapides',
+                'footer-text': '© 2025 Taha Bamhaoute. Tous droits réservés.'
+            },
+            en: {
+                'nav-home': 'Home',
+                'nav-cv': 'Resume',
+                'nav-projects': 'Projects',
+                'nav-contact': 'Contact',
+                'projects-title': 'Projects & Research',
+                'projects-subtitle': 'Discover my work in numerical simulation, CFD and condensed matter physics.',
+                'project1-title': '1D Boltzmann Equation Resolution',
+                'project1-desc': 'Fortran implementation of numerical methods to solve the kinetic Boltzmann equation with BGK model. Study of transport regimes with and without collision, OpenMP parallelization and numerical validation.',
+                'project2-title': 'Turbulent Flow Modeling',
+                'project2-desc': 'Comparative study of turbulence models (k-ω SST, Spalart-Allmaras) with ANSYS Fluent. Validation on flat plate, NACA 0012 profile and backward-facing step. Mesh convergence analysis and comparison with NASA data.',
+                'project3-title': 'DFT and Gross-Pitaevskii Equation',
+                'project3-desc': 'Optimization of numerical methods for density functional theory. Implementation of fixed point and gradient descent algorithms with Julia/DFTK. Error estimation and stochastic convergence.',
+                'tag-finite-diff': 'Finite Differences',
+                'tag-transport': 'Transport',
+                'tag-turbulence': 'Turbulence',
+                'tag-validation': 'Validation',
+                'tag-optimization': 'Optimization',
+                'tag-quantum': 'Quantum',
+                'report-btn': 'Report',
+                'technical-details': 'Technical Details',
+                'technical-subtitle': 'Overview of methods and technologies used in my research projects.',
+                'numerical-methods': 'Numerical Methods',
+                'method1': '• Finite differences',
+                'method2': '• Finite elements',
+                'method3': '• Fixed point methods (SCF)',
+                'method4': '• Gradient descent',
+                'method5': '• Plane waves (DFT)',
+                'method6': '• Stochastic optimization',
+                'tools-tech': 'Tools & Technologies',
+                'application-domains': 'Application Domains',
+                'domain1': '• Condensed matter physics',
+                'domain2': '• Fluid mechanics',
+                'domain3': '• Kinetic transport',
+                'domain4': '• Turbulence',
+                'domain5': '• Electronic structure',
+                'domain6': '• Aerodynamics',
+                'footer-description': 'Specialist in numerical fluid mechanics and simulation, with a focus on plastic recycling applications.',
+                'quick-links': 'Quick Links',
+                'footer-text': '© 2025 Taha Bamhaoute. All rights reserved.'
+            }
+        };
+
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('language') || 'fr';
+                this.init();
+            }
+
+            init() {
+                this.applyLanguage();
+                this.bindEvents();
+            }
+
+            applyLanguage() {
+                document.documentElement.setAttribute('data-lang', this.currentLang);
+                localStorage.setItem('language', this.currentLang);
+                
+                // Traduire tous les éléments
+                document.querySelectorAll('[data-translate]').forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (translations[this.currentLang] && translations[this.currentLang][key]) {
+                        element.textContent = translations[this.currentLang][key];
+                    }
+                });
+            }
+
+            toggle() {
+                this.currentLang = this.currentLang === 'fr' ? 'en' : 'fr';
+                this.applyLanguage();
+            }
+
+            bindEvents() {
+                const langToggle = document.getElementById('language-toggle');
+                if (langToggle) {
+                    langToggle.addEventListener('click', () => this.toggle());
+                }
+            }
+        }
+
+        // Initialiser le gestionnaire de langue
+        document.addEventListener('DOMContentLoaded', function() {
+            new LanguageManager();
+            
+            // Initialiser Lucide icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    </script>
 </body>
 </html>
