@@ -53,6 +53,13 @@
             font-weight: 300;
             user-select: none;
             transform-origin: center;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Mode sombre - équations plus visibles */
+        [data-theme="dark"] .math-equation,
+        .dark .math-equation {
+            opacity: 0.12;
         }
 
         /* Équations dispersées */
@@ -602,6 +609,17 @@
                 height: 3px;
             }
 
+            /* Équations plus petites sur mobile */
+            .math-equation {
+                font-size: 1rem !important;
+                opacity: 0.06;
+            }
+
+            [data-theme="dark"] .math-equation,
+            .dark .math-equation {
+                opacity: 0.1;
+            }
+
             @keyframes particle-flow-1 {
                 0% {
                     opacity: 0;
@@ -721,6 +739,17 @@
             .profile-photo {
                 width: 100px;
                 height: 100px;
+            }
+
+            /* Équations encore plus discrètes sur très petits écrans */
+            .math-equation {
+                font-size: 0.8rem !important;
+                opacity: 0.04;
+            }
+
+            [data-theme="dark"] .math-equation,
+            .dark .math-equation {
+                opacity: 0.08;
             }
         }
 
