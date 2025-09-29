@@ -60,7 +60,7 @@
                 <div class="section-header">
                     <h1 data-translate="cv-title">Curriculum Vitæ</h1>
                     <p data-translate="cv-subtitle">Mon parcours académique et professionnel</p>
-                    <a href="cv/cv_Taha.pdf" target="_blank" class="btn btn-primary">
+                    <a href="cv/cv_Taha_fr.pdf" target="_blank" class="btn btn-primary" id="cv-download-link">
                         <i data-lucide="download"></i>
                         <span data-translate="download-cv">Télécharger CV</span>
                     </a>
@@ -276,6 +276,12 @@
             applyLanguage() {
                 document.documentElement.setAttribute('data-lang', this.currentLang);
                 localStorage.setItem('language', this.currentLang);
+                
+                // Mettre à jour le lien du CV
+                const cvLink = document.getElementById('cv-download-link');
+                if (cvLink) {
+                    cvLink.href = this.currentLang === 'fr' ? 'cv/cv_Taha_fr.pdf' : 'cv/cv_Taha_en.pdf';
+                }
                 
                 // Traduire tous les éléments
                 document.querySelectorAll('[data-translate]').forEach(element => {
