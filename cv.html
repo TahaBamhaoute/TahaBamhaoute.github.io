@@ -5,129 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Taha Bamhaoute | CFD & Simulation Numérique</title>
     <meta name="description" content="CV de Taha Bamhaoute, spécialisé en mécanique des fluides computationnelle et simulation numérique">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-foreground: #ffffff;
-            --background: #ffffff;
-            --foreground: #0f172a;
-            --muted: #f1f5f9;
-            --muted-foreground: #64748b;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --radius: 0.5rem;
-            --radius-lg: 1rem;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-            
-            /* Couleurs spécifiques Formation */
-            --formation-accent: #87CEEB; /* Bleu ciel */
-            --formation-text: #000000;   /* Noir */
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body { 
-            background-color: var(--background); 
-            color: var(--foreground); 
-            line-height: 1.5; 
-            padding-top: 5rem; /* Espace pour la barre fixe */
-        }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-
-        /* --- HEADER FIXÉ (BARRE DE NAVIGATION) --- */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 4.5rem;
-            background: #ffffff; /* Fond blanc solide pour être sûr qu'il s'affiche */
-            border-bottom: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            z-index: 9999; /* Très haut pour passer devant tout */
-            display: flex;
-            align-items: center;
-        }
-
-        .nav { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            width: 100%;
-        }
-
-        .nav-brand { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            font-weight: 700; 
-            text-decoration: none; 
-            color: var(--primary); 
-            font-size: 1.1rem;
-        }
-
-        .nav-menu { display: flex; gap: 1.5rem; }
-
-        .nav-link { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.4rem; 
-            text-decoration: none; 
-            color: var(--muted-foreground); 
-            transition: var(--transition); 
-            font-size: 0.9rem; 
-            font-weight: 500;
-        }
-
-        .nav-link:hover, .nav-link.active { color: var(--primary); }
-
-        .nav-actions { display: flex; gap: 0.75rem; }
-        .nav-actions button { background: none; border: none; cursor: pointer; color: var(--muted-foreground); padding: 5px; }
-
-        /* --- CONTENU CV --- */
-        .section-header { text-align: center; margin: 2rem 0 3rem; }
-        .cv-grid { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; }
-        .card { background: var(--card); border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
-
-        /* --- STYLE FORMATION (BLEU CIEL & NOIR) --- */
-        .formation-section h3 { color: var(--formation-text); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-size: 1.3rem; }
-        .formation-section h3 i { color: var(--formation-accent); }
-        .formation-timeline { border-left: 2px solid var(--formation-text); padding-left: 1.5rem; margin-left: 0.5rem; }
-        .formation-item { position: relative; margin-bottom: 2rem; }
-        .formation-item::before {
-            content: ''; position: absolute; left: -29px; top: 0.25rem;
-            width: 12px; height: 12px; border-radius: 50%;
-            background: var(--formation-accent); border: 2px solid var(--formation-text);
-        }
-        .formation-item h4 { color: var(--formation-text); font-weight: 700; font-size: 1.1rem; }
-        .formation-item .university { color: var(--formation-accent); font-weight: 600; margin: 0.25rem 0; font-size: 0.95rem; }
-        .formation-item .date { 
-            display: inline-block; background: var(--formation-text); color: #ffffff; 
-            padding: 0.2rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin: 0.5rem 0;
-        }
-
-        /* --- SIDEBAR & AUTRES --- */
-        .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-        .tag { background: var(--muted); padding: 0.3rem 0.7rem; border-radius: 0.5rem; font-size: 0.8rem; font-weight: 500; }
-        .btn-download { background: var(--primary); color: white; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: var(--radius); display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; transition: 0.3s; }
-        .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
-
-        /* --- RESPONSIVE : IMPORTANT --- */
-        @media (max-width: 850px) {
-            .cv-grid { grid-template-columns: 1fr; }
-            .nav-link span { display: none; } /* On cache le texte, mais on garde les icônes sur mobile */
-            .nav-menu { gap: 1rem; }
-        }
-    </style>
 </head>
 <body>
-
-    <header class="header">
+    <!-- Header -->
+    <header class="header" id="header">
         <div class="container">
             <nav class="nav">
                 <a href="index.html" class="nav-brand">
@@ -135,11 +19,11 @@
                     <span>Taha Bamhaoute</span>
                 </a>
                 <div class="nav-menu" id="nav-menu">
-                    <a href="index.html" class="nav-link active">
+                    <a href="index.html" class="nav-link">
                         <i data-lucide="home"></i>
                         <span data-translate="nav-home">Accueil</span>
                     </a>
-                    <a href="cv.html" class="nav-link">
+                    <a href="cv.html" class="nav-link active">
                         <i data-lucide="file-text"></i>
                         <span data-translate="nav-cv">CV</span>
                     </a>
@@ -168,77 +52,289 @@
         </div>
     </header>
 
-    <main class="container">
-        <section class="section-header">
-            <h1>Curriculum Vitæ</h1>
-            <p>Ingénieur en Simulation Numérique & CFD</p>
-            <br>
-            <a href="cv/cv_Taha_fr.pdf" target="_blank" class="btn-download">
-                <i data-lucide="download"></i> Télécharger le PDF
-            </a>
-        </section>
-
-        <div class="cv-grid">
-            <aside>
-                <div class="card">
-                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 1rem;">Compétences</h4>
-                    <div class="tag-list">
-                        <span class="tag">OpenFOAM</span><span class="tag">C++</span>
-                        <span class="tag">Python</span><span class="tag">MPI</span>
-                    </div>
+    <!-- Main Content -->
+    <main>
+        <!-- CV Section -->
+        <section class="cv page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h1 data-translate="cv-title">Curriculum Vitæ</h1>
+                    <p data-translate="cv-subtitle">Mon parcours académique et professionnel</p>
+                    <a href="cv/cv_Taha_fr.pdf" target="_blank" class="btn btn-primary" id="cv-download-link">
+                        <i data-lucide="download"></i>
+                        <span data-translate="download-cv">Télécharger CV</span>
+                    </a>
                 </div>
-            </aside>
-
-            <div class="cv-main">
-                <div class="card formation-section">
-                    <h3><i data-lucide="graduation-cap"></i> Formation</h3>
-                    <div class="formation-timeline">
-                        <div class="formation-item">
-                            <h4>Doctorat en Mécanique des fluides numériques</h4>
-                            <p class="university">Université Claude Bernard Lyon 1 & IFPEN</p>
-                            <span class="date">2025 - Présent</span>
-                            <p style="font-size: 0.9rem; color: var(--muted-foreground);">Sujet : Modélisation de l’extrusion bi-vis pour le recyclage plastique.</p>
-                        </div>
-                        <div class="formation-item">
-                            <h4>Master 2 Recherche - MEFA</h4>
-                            <p class="university">Université de Bordeaux</p>
-                            <span class="date">2024 - 2025</span>
-                        </div>
-                        <div class="formation-item">
-                            <h4>Diplôme d'ingénieur</h4>
-                            <p class="university">ENSEIRB-MATMECA, Bordeaux INP</p>
-                            <span class="date">2022 - 2025</span>
+                <div class="cv-content">
+                    <div class="cv-sidebar">
+                        <div class="card">
+                            <div class="profile">
+                                <h3>Taha Bamhaoute</h3>
+                                <p data-translate="profile-title">Ingénieur en simulation numérique & CFD</p>
+                            </div>
+                            <div class="cv-section">
+                                <h4><i data-lucide="code"></i> <span data-translate="skills-title">Compétences</span></h4>
+                                <div class="skills-list">
+                                    <span>OpenFOAM</span>
+                                    <span>ANSYS Fluent</span>
+                                    <span>C++</span>
+                                    <span>Python</span>
+                                    <span>MPI/OpenMP</span>
+                                    <span>Linux</span>
+                                    <span>Git</span>
+                                </div>
+                            </div>
+                            <div class="cv-section">
+                                <h4><i data-lucide="languages"></i> <span data-translate="languages-title">Langues</span></h4>
+                                <div class="languages">
+                                    <div class="language">
+                                        <span data-translate="lang-arabic">Arabe</span>
+                                        <span data-translate="level-native">Natif</span>
+                                    </div>
+                                    <div class="language">
+                                        <span data-translate="lang-french">Français</span>
+                                        <span data-translate="level-fluent">Courant (C1)</span>
+                                    </div>
+                                    <div class="language">
+                                        <span data-translate="lang-english">Anglais</span>
+                                        <span data-translate="level-advanced">Avancé (B2)</span>
+                                    </div>
+                                    <div class="language">
+                                        <span data-translate="lang-spanish">Espagnol</span>
+                                        <span data-translate="level-beginner">Débutant (A2)</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="card">
-                    <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-size: 1.3rem;">
-                        <i data-lucide="briefcase" style="color: var(--primary);"></i> Expérience
-                    </h3>
-                    <div style="border-left: 2px solid var(--border); padding-left: 1.5rem; margin-left: 0.5rem;">
-                        <div style="position: relative; margin-bottom: 1rem;">
-                            <div style="content: ''; position: absolute; left: -29px; top: 0.25rem; width: 10px; height: 10px; border-radius: 50%; background: var(--primary);"></div>
-                            <span style="font-size: 0.85rem; color: var(--muted-foreground); font-weight: 600;">2025</span>
-                            <h4 style="margin-top: 0.2rem;">Stage de fin d'études – IFPEN, Lyon</h4>
-                            <p style="font-size: 0.9rem; color: var(--muted-foreground);">Développement d'un solveur OpenFOAM.</p>
+                    <div class="cv-main">
+                        <div class="card">
+                            <h3><i data-lucide="graduation-cap"></i> <span data-translate="education-title">Formation</span></h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <h4 data-translate="education-doctorat">Doctorat en Mécanique des fluides numériques</h4>
+                                    <p data-translate="university-Claude">Université de Claude Bernard Lyon 1 & IFP Energies nouvelles</p>
+                                    <span class="date">2025 - présent</span>
+                                    <p data-translate="Sujet :">Sujet : Modélisation et simulation de l’extrusion bi-vis avec injection de solvant pour le recyclage des déchets plastiques</p>
+                                    <p data-translate="Axes de recherche :">Axes de recherche : CFD avancée, rhéologie des polymères, maillage dynamique, calcul haute performance</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <h4 data-translate="education-master">Master 2 (parallèle) en Mécanique fondamentale et applications (MEFA)</h4>
+                                    <p data-translate="university-bordeaux">Université de Bordeaux</p>
+                                    <span class="date">2024 - 2025</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <h4 data-translate="education-engineer">Diplôme d'ingénieur (fluides et Énergies)</h4>
+                                    <p data-translate="school-enseirb">ENSEIRB-MATMECA, Bordeaux INP</p>
+                                    <span class="date">2022 - 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3><i data-lucide="briefcase"></i> <span data-translate="experience-title">Expérience</span></h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <h4 data-translate="internship-ifp-title">Stage de fin d'études – IFP Énergies Nouvelles, Lyon</h4>
+                                    <span class="date" data-translate="internship-ifp-date">Avril 2025 – Septembre 2025</span>
+                                    <p class="description" data-translate="internship-ifp-desc">
+                                        Développement d'un solveur OpenFOAM pour la simulation du mélange miscible entre un fluide newtonien et non newtonien pour des applications au recyclage de plastique.<br>
+                                        • Intégration des transferts thermiques<br>
+                                        • Validation du modèle à l'aide de données expérimentales dans la littérature
+                                    </p>
+                                </div>
+                                <div class="timeline-item">
+                                    <h4 data-translate="internship-lamfa-title">Stage de recherche – LAMFA / Université de Picardie Jules Verne, Amiens</h4>
+                                    <span class="date" data-translate="internship-lamfa-date">Juin 2024 – Septembre 2024</span>
+                                    <p class="description" data-translate="internship-lamfa-desc">
+                                        Estimation des erreurs et optimisation de méthodes numériques pour la théorie de la fonctionnelle de densité (DFT).<br>
+                                        • Application au calcul de structures électroniques en physique de la matière condensée<br>
+                                        • Utilisation du langage Julia et de la bibliothèque DFTK
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <footer style="text-align: center; padding: 4rem 0 2rem; border-top: 1px solid var(--border); margin-top: 4rem;">
-        <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem;">
-            <a href="#" style="color: var(--muted-foreground);"><i data-lucide="github"></i></a>
-            <a href="#" style="color: var(--muted-foreground);"><i data-lucide="linkedin"></i></a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Taha Bamhaoute</h3>
+                    <p data-translate="footer-description">Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/TahaBamhaoute" target="_blank">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/taha-bamhaoute-b06a82253?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BRsrqxVqtTBa4FyuQAJzq9Q%3D%3D" target="_blank">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="mailto:bamask3@gmail.com">
+                            <i data-lucide="mail"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="quick-links">Liens Rapides</h4>
+                    <nav class="footer-nav">
+                        <a href="index.html" data-translate="nav-home">Accueil</a>
+                        <a href="cv.html" data-translate="nav-cv">CV</a>
+                        <a href="projects.html" data-translate="nav-projects">Projets</a>
+                        <a href="contact.html" data-translate="nav-contact">Contact</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-translate="footer-text">&copy; 2025 Taha Bamhaoute. Tous droits réservés.</p>
+            </div>
         </div>
-        <p style="font-size: 0.9rem; color: var(--muted-foreground);">© 2025 Taha Bamhaoute. Tous droits réservés.</p>
     </footer>
-
+    <script src="script.js"></script>
     <script>
-        lucide.createIcons();
+        // Système de traduction pour CV
+        const translations = {
+            fr: {
+                'nav-home': 'Accueil',
+                'nav-cv': 'CV',
+                'nav-projects': 'Projets',
+                'nav-contact': 'Contact',
+                'cv-title': 'Curriculum Vitæ',
+                'cv-subtitle': 'Mon parcours académique et professionnel',
+                'download-cv': 'Télécharger CV',
+                'profile-title': 'Ingénieur en simulation numérique & CFD',
+                'skills-title': 'Compétences',
+                'languages-title': 'Langues',
+                'lang-arabic': 'Arabe',
+                'lang-french': 'Français',
+                'lang-english': 'Anglais',
+                'lang-spanish': 'Espagnol',
+                'level-native': 'Natif',
+                'level-fluent': 'Courant (C1)',
+                'level-advanced': 'Avancé (B2)',
+                'level-beginner': 'Débutant (A2)',
+                'education-title': 'Formation',
+                'education-master': 'Master 2 (parallèle) en Mécanique fondamentale et applications (MEFA)',
+                'university-bordeaux': 'Université de Bordeaux',
+                'education-engineer': 'Diplôme d\'ingénieur',
+                'school-enseirb': 'ENSEIRB-MATMECA, Bordeaux INP',
+                'experience-title': 'Expérience',
+                'internship-ifp-title': 'Stage de fin d\'études – IFP Énergies Nouvelles, Lyon',
+                'internship-ifp-date': 'Avril 2025 – Septembre 2025',
+                'internship-ifp-desc': 'Développement d\'un solveur OpenFOAM pour la simulation du mélange miscible entre un fluide newtonien et non newtonien pour des applications au recyclage de plastique.<br>• Intégration des transferts thermiques<br>• Validation du modèle à l\'aide de données expérimentales dans la littérature',
+                'internship-lamfa-title': 'Stage de recherche – LAMFA / Université de Picardie Jules Verne, Amiens',
+                'internship-lamfa-date': 'Juin 2024 – Septembre 2024',
+                'internship-lamfa-desc': 'Estimation des erreurs et optimisation de méthodes numériques pour la théorie de la fonctionnelle de densité (DFT).<br>• Application au calcul de structures électroniques en physique de la matière condensée<br>• Utilisation du langage Julia et de la bibliothèque DFTK',
+                'footer-description': 'Spécialiste en mécanique des fluides numériques et simulation, avec un focus sur les applications pour le recyclage plastique.',
+                'quick-links': 'Liens Rapides',
+                'footer-text': '© 2025 Taha Bamhaoute. Tous droits réservés.',
+                'education-doctorat': 'Doctorat en Mécanique des fluides numériques',
+                'university-Claude':'Université de Claude Bernard Lyon 1 & IFP Energies nouvelles',
+                'Sujet':'Sujet : Modélisation et simulation de l’extrusion bi-vis avec injection de solvant pour le recyclage des déchets plastiques',
+                'Axes de recherche':'Axes de recherche : CFD avancée, rhéologie des polymères, maillage dynamique, calcul haute performance',
+
+            },
+            en: {
+                'nav-home': 'Home',
+                'nav-cv': 'Resume',
+                'nav-projects': 'Projects',
+                'nav-contact': 'Contact',
+                'cv-title': 'Curriculum Vitæ',
+                'cv-subtitle': 'My academic and professional background',
+                'download-cv': 'Download Resume',
+                'profile-title': 'Numerical Simulation & CFD Engineer',
+                'skills-title': 'Skills',
+                'languages-title': 'Languages',
+                'lang-arabic': 'Arabic',
+                'lang-french': 'French',
+                'lang-english': 'English',
+                'lang-spanish': 'Spanish',
+                'level-native': 'Native',
+                'level-fluent': 'Fluent (C1)',
+                'level-advanced': 'Advanced (B2)',
+                'level-beginner': 'Beginner (A2)',
+                'education-title': 'Education',
+                'education-master': 'Master of Research (double degree) in Fundamental Mechanics and Applications (MEFA)',
+                'university-bordeaux': 'University of Bordeaux',
+                'education-engineer': 'Master of Engineering in Computational Fluid Dynamics',
+                'school-enseirb': 'ENSEIRB-MATMECA, Bordeaux INP',
+                'experience-title': 'Experience',
+                'internship-ifp-title': 'Final Year Internship – IFP Énergies Nouvelles, Lyon',
+                'internship-ifp-date': 'April 2025 – September 2025',
+                'internship-ifp-desc': 'Development of an OpenFOAM solver for simulating miscible mixing between Newtonian and non-Newtonian fluids for plastic recycling applications.<br>• Integration of heat transfer<br>• Model validation using experimental data from literature',
+                'internship-lamfa-title': 'Research Internship – LAMFA / University of Picardie Jules Verne, Amiens',
+                'internship-lamfa-date': 'June 2024 – September 2024',
+                'internship-lamfa-desc': 'Error estimation and optimization of numerical methods for density functional theory (DFT).<br>• Application to electronic structure calculations in condensed matter physics<br>• Use of Julia language and DFTK library',
+                'footer-description': 'Specialist in numerical fluid mechanics and simulation, with a focus on plastic recycling applications.',
+                'quick-links': 'Quick Links',
+                'footer-text': '© 2025 Taha Bamhaoute. All rights reserved.',
+                'education-doctorat': 'PhD in Computational Fluid Mechanics',
+                'university-Claude':'Claude Bernard University Lyon 1 & IFP Energies nouvelles',
+                'Sujet :':'Topic: Modeling and simulation of twin-screw extrusion with solvent injection for plastic waste recycling.',
+                'Axes de recherche :':'Research focus: Advanced CFD, polymer rheology, dynamic meshing, high-performance computing (HPC)',
+            }
+        };
+
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('language') || 'fr';
+                this.init();
+            }
+
+            init() {
+                this.applyLanguage();
+                this.bindEvents();
+            }
+
+            applyLanguage() {
+                document.documentElement.setAttribute('data-lang', this.currentLang);
+                localStorage.setItem('language', this.currentLang);
+                
+                // Mettre à jour le lien du CV
+                const cvLink = document.getElementById('cv-download-link');
+                if (cvLink) {
+                    cvLink.href = this.currentLang === 'fr' ? 'cv/cv_Taha_fr.pdf' : 'cv/cv_Taha_en.pdf';
+                }
+                
+                // Traduire tous les éléments
+                document.querySelectorAll('[data-translate]').forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (translations[this.currentLang] && translations[this.currentLang][key]) {
+                        if (key.includes('desc')) {
+                            // Pour les descriptions avec HTML
+                            element.innerHTML = translations[this.currentLang][key];
+                        } else {
+                            element.textContent = translations[this.currentLang][key];
+                        }
+                    }
+                });
+            }
+
+            toggle() {
+                this.currentLang = this.currentLang === 'fr' ? 'en' : 'fr';
+                this.applyLanguage();
+            }
+
+            bindEvents() {
+                const langToggle = document.getElementById('language-toggle');
+                if (langToggle) {
+                    langToggle.addEventListener('click', () => this.toggle());
+                }
+            }
+        }
+
+        // Initialiser le gestionnaire de langue
+        document.addEventListener('DOMContentLoaded', function() {
+            new LanguageManager();
+            
+            // Initialiser Lucide icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
     </script>
 </body>
 </html>
