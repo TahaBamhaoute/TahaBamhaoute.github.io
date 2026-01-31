@@ -680,6 +680,116 @@
                 transform: translateY(0);
             }
         }
+        .waves-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 0;
+}
+
+.waves {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    min-height: 100px;
+    max-height: 150px;
+}
+
+/* Animation de parallaxe */
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+/* Ajustement pour mobile */
+@media (max-width: 768px) {
+    .waves {
+        height: 40px;
+        min-height: 40px;
+    }
+}
+.ocean { 
+  height: 5%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.wave {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
+  position: absolute;
+  top: -198px;
+  width: 6400px;
+  height: 198px;
+  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate3d(0, 0, 0);
+  opacity: 0.6;
+}
+
+.wave:nth-of-type(2) {
+  top: -175px;
+  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+  opacity: 0.4;
+}
+
+.wave:nth-of-type(3) {
+  top: -160px;
+  animation: wave 10s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -0.5s infinite, swell 10s ease -2s infinite;
+  opacity: 0.2;
+}
+
+@keyframes wave {
+  0% { margin-left: 0; }
+  100% { margin-left: -1600px; }
+}
+
+@keyframes swell {
+  0%, 100% { transform: translate3d(0, -25px, 0); }
+  50% { transform: translate3d(0, 5px, 0); }
+}
+.wave-emoji {
+    display: inline-block;
+    animation: wave-animation 2.5s infinite;
+    transform-origin: 70% 70%; /* Point de pivot au niveau du poignet */
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+    10% { transform: rotate(54.0deg) }  /* La main commence à bouger */
+    20% { transform: rotate(-8.0deg) }
+    30% { transform: rotate(54.0deg) }
+    40% { transform: rotate(-4.0deg) }
+    50% { transform: rotate(50.0deg) }
+    60% { transform: rotate( 0.0deg) }  /* Retour à la position neutre */
+    100% { transform: rotate( 0.0deg) } /* Pause avant de recommencer */
+}
     </style>
 </head>
 <body>
@@ -750,7 +860,10 @@
                     <div class="fluid-particle particle-5"></div>
                 </div>
                 
-                <h1 class="hero-greeting" data-translate="hero-greeting">Hi 👋</h1>
+                <h1 class="hero-greeting">
+    <span data-translate="hero-greeting">Hi</span> 
+    <span class="wave-emoji">👋</span>
+</h1>
                 <p class="hero-description" data-translate="hero-description">
                     Je suis Taha, ingénieur spécialisé en simulation numérique et mécanique des fluides computationnelle (CFD).
                 </p>
@@ -767,6 +880,9 @@
                 </div>
             </div>
         </div>
+        
+</div>
+ <canvas id="meshCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></canvas>       
     </section>
 
     <!-- About Section -->
@@ -819,7 +935,7 @@ maillages et le calcul haute performance, avec des applications au recyclage des
                 'nav-cv': 'CV',
                 'nav-projects': 'Projets',
                 'nav-contact': 'Contact',
-                'hero-greeting': 'Hi 👋',
+                'hero-greeting': 'Hi ',
                 'hero-description': 'Je suis Taha, ingénieur spécialisé en simulation numérique et mécanique des fluides computationnelle (CFD).',
                 'btn-projects': 'Découvrir mes projets',
                 'btn-cv': 'Voir mon CV',
@@ -888,5 +1004,75 @@ maillages et le calcul haute performance, avec des applications au recyclage des
             new LanguageManager();
         });
     </script>
+    <script>
+const canvas = document.getElementById('meshCanvas');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+let mouse = { x: -1000, y: -1000 };
+
+// Configuration du maillage
+const cellSize = 60; // Taille d'une maille de base
+const skyBlue = "#87CEEB";
+const black = "#000000";
+
+function resize() {
+    width = canvas.width = canvas.offsetWidth;
+    height = canvas.height = canvas.offsetHeight;
+}
+
+window.addEventListener('resize', resize);
+window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+});
+
+resize();
+
+function drawMesh(x, y, size, level) {
+    // Calcul de la distance entre le centre de la maille et la souris
+    const centerX = x + size / 2;
+    const centerY = y + size / 2;
+    const dist = Math.sqrt((centerX - mouse.x)**2 + (centerY - mouse.y)**2);
+
+    // Condition de raffinement : si la souris est proche, on divise
+    // On limite à 3 niveaux de subdivision pour la performance
+    if (dist < size * 1.5 && level < 3) {
+        const half = size / 2;
+        drawMesh(x, y, half, level + 1);             // Top Left
+        drawMesh(x + half, y, half, level + 1);      // Top Right
+        drawMesh(x, y + half, half, level + 1);      // Bottom Left
+        drawMesh(x + half, y + half, half, level + 1); // Bottom Right
+    } else {
+        // Dessin de la maille finale
+        ctx.strokeStyle = level > 1 ? skyBlue : '#e2e8f0'; // Sky blue pour le raffinement
+        ctx.lineWidth = level > 1 ? 1 : 0.5;
+        ctx.strokeRect(x, y, size, size);
+        
+        // Petit point aux nœuds pour le style "ingénierie"
+        if (level > 2) {
+            ctx.fillStyle = skyBlue;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 1, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, width, height);
+    
+    // On parcourt l'écran avec la taille de cellule de base
+    for (let x = 0; x <= width; x += cellSize) {
+        for (let y = 0; y <= height; y += cellSize) {
+            drawMesh(x, y, cellSize, 1);
+        }
+    }
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
 </body>
 </html>
